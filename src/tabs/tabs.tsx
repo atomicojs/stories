@@ -47,6 +47,11 @@ tabs.props = {
     type: String,
     reflect: true,
   },
+  fullWidth: {
+    type: Boolean,
+    reflect: true,
+    value: true,
+  },
 };
 
 tabs.styles = [
@@ -55,6 +60,7 @@ tabs.styles = [
     :host {
       --tab-background: transparent;
       --tab-padding: 0.5rem 0px;
+      --tab-border-color: transparent;
       display: flex;
       flex-flow: column nowrap;
     }
@@ -63,13 +69,18 @@ tabs.styles = [
       display: flex;
       gap: 1rem;
       max-width: var(--max-content);
-      margin: 0px auto;
+      margin: 0px auto calc(var(--border-width-divide) * -1);
+      position: relative;
     }
     .tabs-item {
       background: var(--tab-background);
       padding: var(--tab-padding);
       border: none;
       cursor: pointer;
+      border-bottom: var(--border-width-active) solid var(--tab-border-color);
+    }
+    .tabs-item--active {
+      --tab-border-color: var(--border-color-active);
     }
     .tabs-content {
       width: 100%;

@@ -1,4 +1,4 @@
-import { Article, Stories, Story, Tabs } from "../../src/components";
+import { Article, Stories, Story, Tabs, Code } from "../../src/components";
 
 export const meta = {
   title: "Welcome",
@@ -19,19 +19,19 @@ export default (
       inventore non fuga.
     </p>
     <h3>Button</h3>
-    <Tabs value="1" full-width>
-      <span slot="tab" value="1">
-        tab 1
+    <Tabs value="1">
+      <span slot="tab" value="1" full-width>
+        JSX
       </span>
-      <span slot="tab" value="2">
-        tab 2
+      <span slot="tab" value="2" full-width>
+        HTML
       </span>
-      <span slot="tab" value="3">
+      <span slot="tab" value="3" full-width>
         tab 3
       </span>
-      <h1 slot="1">Agenda -1 </h1>
-      <h1 slot="2">Agenda -2</h1>
-      <h1 slot="3">Agenda -3</h1>
+      <Code slot="1" type="html" value={`<host></host>`}></Code>
+      <Code slot="2" type="javascript" value={`const x = 100;`}></Code>
+      <Code slot="3" type="typescript" value={`const x = 100;`}></Code>
     </Tabs>
     <Stories
       props={{

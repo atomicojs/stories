@@ -1,6 +1,9 @@
 declare module "*.css" {
   export default URL.prototype.href;
 }
+declare module "https://*" {
+  export default URL.prototype.href;
+}
 declare module "*.png" {
   export default URL.prototype.href;
 }
