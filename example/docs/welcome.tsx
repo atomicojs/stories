@@ -1,4 +1,4 @@
-import { Article, Stories, Story } from "../components";
+import { Article, Stories, Story, Tabs } from "../../src/components";
 
 export const meta = {
   title: "Welcome",
@@ -19,6 +19,20 @@ export default (
       inventore non fuga.
     </p>
     <h3>Button</h3>
+    <Tabs value="1" full-width>
+      <span slot="tab" value="1">
+        tab 1
+      </span>
+      <span slot="tab" value="2">
+        tab 2
+      </span>
+      <span slot="tab" value="3">
+        tab 3
+      </span>
+      <h1 slot="1">Agenda -1 </h1>
+      <h1 slot="2">Agenda -2</h1>
+      <h1 slot="3">Agenda -3</h1>
+    </Tabs>
     <Stories
       props={{
         disabled: {

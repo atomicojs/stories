@@ -1,7 +1,7 @@
 import { Props, c, css } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
-import customElements from "../../custom-elements";
-import tokens from "../../tokens";
+import customElements from "../custom-elements";
+import tokens from "../tokens";
 
 function article({ title }: Props<typeof article.props>) {
   useRender(() => title && <h1 slot="title">{title}</h1>, [title]);

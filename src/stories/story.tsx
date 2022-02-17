@@ -1,6 +1,6 @@
 import { Props, c, useRef, render, useEffect } from "atomico";
 import { useSlot } from "@atomico/hooks/use-slot";
-import customElements from "../../custom-elements";
+import customElements from "../custom-elements";
 import { useRender } from "@atomico/hooks/use-render";
 
 function story({ values, render: propRender }: Props<typeof story.props>) {

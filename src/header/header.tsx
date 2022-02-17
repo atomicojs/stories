@@ -1,30 +1,10 @@
 import { Props, c, css, useProp, useHost, Meta, DOMEvent } from "atomico";
-import { useRender } from "@atomico/hooks/use-render";
-import { redirect } from "@atomico/hooks/use-router";
-import customElements from "../../custom-elements";
-import tokens from "../../tokens";
 
-function header({
-  links,
-}: Props<typeof header.props>): Meta<DOMEvent<"ShowMenu">> {
+import customElements from "../custom-elements";
+import tokens from "../tokens";
+
+function header(): Meta<DOMEvent<"ShowMenu">> {
   const [, setShowMenu] = useProp<boolean>("showMenu");
-  const host = useHost();
-
-  // useRender(() =>
-  //   links.map(({ path, title }) => (
-  //     <a
-  //       slot="links"
-  //       href={path}
-  //       onclick={(event) => {
-  //         event.preventDefault();
-  //         redirect(path);
-  //         setShowMenu(false);
-  //       }}
-  //     >
-  //       {title}
-  //     </a>
-  //   ))
-  // );
 
   return (
     <host shadowDom>
@@ -48,10 +28,6 @@ function header({
 }
 
 header.props = {
-  links: {
-    type: Array,
-    value: (): { path: string; title: string }[] => [],
-  },
   showMenu: {
     type: Boolean,
     reflect: true,

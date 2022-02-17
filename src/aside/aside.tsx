@@ -1,6 +1,6 @@
 import { c, css } from "atomico";
-import customElements from "../../custom-elements";
-import tokens from "../../tokens";
+import customElements from "../custom-elements";
+import tokens from "../tokens";
 
 function aside() {
   return (

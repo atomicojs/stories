@@ -1,7 +1,7 @@
 import { Props, c, css, useProp } from "atomico";
 import { serialize } from "atomico/utils";
-import customElements from "../../custom-elements";
-import tokens from "../../tokens";
+import customElements from "../custom-elements";
+import tokens from "../tokens";
 
 function storiesTabs({ tabs }: Props<typeof storiesTabs.props>) {
   const [value, setValue] = useProp<string>("value");

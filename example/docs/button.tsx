@@ -1,4 +1,4 @@
-import { Article, Stories, Story } from "../components";
+import { Article, Stories, Story } from "../../src/components";
 import { md } from "@atomico/markdown";
 
 export const meta = {

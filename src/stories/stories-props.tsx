@@ -1,6 +1,6 @@
 import { Props, c, css, useProp } from "atomico";
 import { formToObject } from "@uppercod/form-tools";
-import customElements from "../../custom-elements";
+import customElements from "../custom-elements";
 import { Input } from "./stories-input";
 
 interface FieldBase {

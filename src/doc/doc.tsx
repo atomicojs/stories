@@ -1,10 +1,10 @@
 import { useRouter, redirect } from "@atomico/hooks/use-router";
 import { useRender } from "@atomico/hooks/use-render";
 import { Props, c, css, useProp, useEffect } from "atomico";
-import customElements from "../../custom-elements";
-import { Header } from "./doc-header";
-import { Aside } from "./doc-aside";
-import tokens from "../../tokens";
+import customElements from "../custom-elements";
+import { Header } from "../header/header";
+import { Aside } from "../aside/aside";
+import tokens from "../tokens";
 
 export interface ModuloPage {
   [path: string]: {

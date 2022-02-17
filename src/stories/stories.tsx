@@ -1,10 +1,10 @@
 import { Props, c, css, useEffect, useRef, useUpdate, useProp } from "atomico";
 import { useSlot } from "@atomico/hooks/use-slot";
-import customElements from "../../custom-elements";
+import customElements from "../custom-elements";
 import { Story } from "./story";
 import { StoriesTabs } from "./stories-tabs";
 import { StoriesProps, Fields } from "./stories-props";
-import tokens from "../../tokens";
+import tokens from "../tokens";
 export { Story } from "./story";
 
 function stories({ props }: Props<typeof stories.props>) {
