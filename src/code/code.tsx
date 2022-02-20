@@ -3,6 +3,7 @@ import { usePromise } from "@atomico/hooks/use-promise";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 import { themeA11yDark } from "./theme";
+import { Icon } from "../icon/icon";
 
 function code({ value, type }: Props<typeof code>) {
   const [html = "", state] = usePromise(
@@ -50,11 +51,11 @@ code.styles = [
       display: flex;
       padding: 1.5rem 0px;
       background: var(--background-code);
-      color: var(--color-code);
+      color: var(--code-color);
     }
     .code {
       width: 100%;
-      max-width: var(--max-content);
+      max-width: var(--content-max-width);
       margin: auto;
     }
   `,

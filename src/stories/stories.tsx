@@ -1,53 +1,39 @@
-import { Props, c, css, useEffect, useRef, useUpdate, useProp } from "atomico";
-import { useSlot } from "@atomico/hooks/use-slot";
+import { Props, c, css, useRef, useProp } from "atomico";
+import { useProxySlot } from "@atomico/hooks/use-slot";
+import { Tabs } from "../tabs/tabs";
 import customElements from "../custom-elements";
 import { Story } from "./story";
-import { StoriesTabs } from "./stories-tabs";
 import { StoriesProps, Fields } from "./stories-props";
 import tokens from "../tokens";
 export { Story } from "./story";
 
 function stories({ props }: Props<typeof stories.props>) {
   const ref = useRef();
-  const update = useUpdate();
   const [values, setValues] = useProp("values");
-  const storiesList = useSlot(ref).filter(
+  const [value, setValue] = useProp<string>("value");
+  const storiesList = useProxySlot(ref).filter(
     (el) => el instanceof Story
   ) as InstanceType<typeof Story>[];
-
-  useEffect(() => {
-    if (!storiesList.some((el) => el.show)) {
-      const [first] = storiesList;
-      if (first) first.show = true;
-    }
-  }, storiesList);
-
-  const currentTab = storiesList.find(({ show }) => show);
 
   storiesList.forEach((story) => (story.values = values));
 
   return (
-    <host shadowDom onStoryChangeShow={update}>
-      <header class="stories-header">
-        <div class="stories-content">
-          <StoriesTabs
-            tabs={storiesList.map(({ label }) => label)}
-            value={currentTab?.label}
-            onStoriesTabsChange={(event) => {
-              const value = event?.target?.value;
-              if (!value) return;
-              storiesList.map((story) => {
-                story.show = story.label === value;
-              });
-            }}
-          ></StoriesTabs>
-        </div>
-      </header>
-      <div class="stories-preview">
-        <div class="stories-content">
-          <slot ref={ref}></slot>
-        </div>
-      </div>
+    <host shadowDom>
+      <slot ref={ref}></slot>
+
+      <Tabs
+        value={value}
+        onChangeTab={({ currentTarget }) => setValue(currentTarget.value)}
+      >
+        {storiesList.map(({ label }, index) => (
+          <span slot="tab" value={index} full-width>
+            {label}
+          </span>
+        ))}
+        {storiesList.map((story, i) => (
+          <slot slot={"" + i} name={(story.slot = "" + i)}></slot>
+        ))}
+      </Tabs>
       <div class="stories-props">
         <div class="stories-content">
           <StoriesProps
@@ -61,6 +47,10 @@ function stories({ props }: Props<typeof stories.props>) {
 }
 
 stories.props = {
+  value: {
+    type: String,
+    value: "0",
+  },
   props: {
     type: Object,
     value: (): Fields => ({}),
@@ -82,22 +72,8 @@ stories.styles = [
       display: block;
       padding: 0px !important;
     }
-    ::slotted(*) {
-      display: none;
-    }
-    ::slotted([show]) {
-      display: block;
-    }
-    .stories-preview {
-      position: relative;
-      background: var(--background-deep-1);
-      padding: 20px 0px;
-      border: var(--border-width-divide) solid var(--border-color-divide);
-      border-left: none;
-      border-right: none;
-    }
     .stories-content {
-      max-width: var(--max-content);
+      max-width: var(--content-max-width);
       margin: auto;
     }
     .stories-props {

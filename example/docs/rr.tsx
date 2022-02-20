@@ -2,8 +2,8 @@ import { Article, Stories, Story } from "../../src/core";
 import { md } from "@atomico/markdown";
 
 export const meta = {
-  title: "Button",
-  path: "/components/button",
+  title: "Components",
+  path: "/random/items-3/item-4",
 };
 
 const intro = md`

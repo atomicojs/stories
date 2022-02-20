@@ -24,8 +24,10 @@
   "dependencies": {
     "@atomico/hooks": "^3.30.2",
     "@atomico/markdown": "^1.0.1",
+    "@uppercod/parse": "^0.4.2",
     "atomico": "^1.45.0",
-    "atomico-use-head": "^1.1.0"
+    "atomico-use-head": "^1.1.0",
+    "scrollable-component": "^1.2.0"
   },
   "devDependencies": {
     "@atomico/scaffold": "^0.2.0",

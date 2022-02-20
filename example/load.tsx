@@ -15,7 +15,7 @@ const modules = Object.values(
 
 render(
   <host>
-    <Doc modules={modules} brand={logo}></Doc>
+    <Doc modules={modules} brand={logo} showMenu></Doc>
   </host>,
   document.body
 );

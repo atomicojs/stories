@@ -1,10 +1,13 @@
 import { Props, c, css } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
+import { useCssLightDom } from "@atomico/hooks/use-css-light-dom";
 import customElements from "../custom-elements";
-import tokens from "../tokens";
+import tokens, { tokensArticle } from "../tokens";
 
 function article({ title }: Props<typeof article.props>) {
   useRender(() => title && <h1 slot="title">{title}</h1>, [title]);
+  useCssLightDom(cssLightDom);
+
   return (
     <host shadowDom>
       <header>
@@ -23,8 +26,40 @@ article.props = {
   },
 };
 
+const cssLightDom = css`
+  img,
+  video,
+  iframe {
+    max-width: 100%;
+    border-radius: var(--embed-radius);
+  }
+  h1 {
+    font-size: var(--title-h1);
+  }
+  h2 {
+    font-size: var(--title-h2);
+  }
+  h3 {
+    font-size: var(--title-h3);
+  }
+  h4 {
+    font-size: var(--title-h4);
+  }
+  h5 {
+    font-size: var(--title-h5);
+  }
+  h6 {
+    font-size: var(--title-h6);
+  }
+  blockquote {
+    border-left: var(--blockquote-border);
+    padding: var(--blockquote-space);
+  }
+`;
+
 article.styles = [
   tokens,
+  tokensArticle,
   css`
     :host {
       display: grid;
@@ -36,7 +71,7 @@ article.styles = [
       margin: 0px;
       width: 100%;
       box-sizing: border-box;
-      max-width: var(--max-content);
+      max-width: var(--content-max-width);
       margin: auto;
     }
     ::slotted(p) {

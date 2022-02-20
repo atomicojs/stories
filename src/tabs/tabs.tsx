@@ -1,10 +1,10 @@
-import { c, css, useRef, useProp } from "atomico";
+import { c, css, useRef, useProp, Meta, DOMEvent } from "atomico";
 import { useProxySlot } from "@atomico/hooks/use-slot";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 import { serialize } from "atomico/utils";
 
-function tabs() {
+function tabs(): Meta<DOMEvent<"ChangeTab">> {
   const ref = useRef();
   const children = useProxySlot<Element>(ref);
   const [value, setValue] = useProp<string>("value");
@@ -46,6 +46,9 @@ tabs.props = {
   value: {
     type: String,
     reflect: true,
+    event: {
+      type: "ChangeTab",
+    },
   },
   fullWidth: {
     type: Boolean,
@@ -68,8 +71,8 @@ tabs.styles = [
       width: 100%;
       display: flex;
       gap: 1rem;
-      max-width: var(--max-content);
-      margin: 0px auto calc(var(--border-width-divide) * -1);
+      max-width: var(--content-max-width);
+      margin: 0px auto calc(var(--divide-border-width) * -1);
       position: relative;
     }
     .tabs-item {
@@ -77,14 +80,15 @@ tabs.styles = [
       padding: var(--tab-padding);
       border: none;
       cursor: pointer;
-      border-bottom: var(--border-width-active) solid var(--tab-border-color);
+      border-bottom: var(--active-border-width) solid var(--tab-border-color);
     }
     .tabs-item--active {
-      --tab-border-color: var(--border-color-active);
+      --tab-border-color: var(--active-border-color);
     }
     .tabs-content {
       width: 100%;
-      border: var(--border-width-divide) solid var(--border-color-divide);
+      border: var(--divide-border-width) solid var(--divide-border-color);
+
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
@@ -96,7 +100,11 @@ tabs.styles = [
     }
     .tabs-maxwidth {
       width: 100%;
-      max-width: var(--max-content);
+      max-width: var(--content-max-width);
+    }
+    :host([full-width]) .tabs-content {
+      border-left: none;
+      border-right: none;
     }
   `,
 ];

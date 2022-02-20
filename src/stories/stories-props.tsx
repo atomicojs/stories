@@ -60,11 +60,13 @@ function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
               </td>
               <td>{field.description}</td>
               <td>
-                <Input
-                  name={name}
-                  type={field.type}
-                  options={field.type === "select" ? field.options : null}
-                ></Input>
+                {field.input || (
+                  <Input
+                    name={name}
+                    type={field.type}
+                    options={field.type === "select" ? field.options : null}
+                  ></Input>
+                )}
               </td>
             </tr>
           ))}
