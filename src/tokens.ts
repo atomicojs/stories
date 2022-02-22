@@ -3,12 +3,10 @@ import { css } from "atomico";
 export const tokensArticle = css`
   :host {
     --embed-radius: 0.5rem;
-    --title-h1: 2.4rem;
-    --title-h2: 2rem;
-    --title-h3: 1.8rem;
-    --title-h4: 1.4rem;
-    --title-h5: 1rem;
-    --title-h6: 0.8rem;
+    --title-h1: clamp(2.2rem, 3.4vw, 2.8rem);
+    --title-h2: clamp(1.8rem, 3vw, 2.4rem);
+    --title-h3: clamp(1.4rem, 2.8vw, 2.2rem);
+    --title-h4: clamp(1rem, 2.4vw, 1.8rem);
     --blockquote-border: 2px solid currentColor;
     --blockquote-space: 0.25rem 0 0.25rem 1rem;
   }
@@ -32,6 +30,12 @@ export default css`
     --space-y: 2rem;
     --active-min-height: 2rem;
     --aside-font-size: 14px;
+    --aside-phone-box-shadow: -100px 0px 100px rgba(13, 42, 62, 0.1);
     --scroll-width: 10px;
+  }
+  @media (max-width: 980px) {
+    :host {
+      --content-max-width: 80%;
+    }
   }
 `;

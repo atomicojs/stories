@@ -24,7 +24,7 @@ function story({ values, render: propRender }: Props<typeof story.props>) {
 
   useMemo(() => {
     if (propRender) {
-      const child = propRender(values);
+      const child = propRender(values || {});
       render(
         <host>{child instanceof Node ? h(child) : child}</host>,
         host.current

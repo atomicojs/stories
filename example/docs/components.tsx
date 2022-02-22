@@ -1,16 +1,11 @@
-import { Article, Stories, Story } from "../../src/core";
-import { md } from "@atomico/markdown";
+import { Article, Stories, Story, md } from "../../src/core";
 
 export const meta = {
   title: "Components",
   path: "/components",
 };
 
-const intro = md`
----
-title: article
----
-
+export default md`
 # welcome
 
 ~~~html tab(items, Html)
@@ -27,34 +22,3 @@ function App(){
 }
 ~~~
 `;
-
-export default (
-  <Article title="Button">
-    {intro}
-    <Stories
-      props={{
-        disabled: {
-          type: "switch",
-          description: "my prop...",
-        },
-        size: {
-          type: "select",
-          description: "my prop...",
-          options: ["small", "large"],
-        },
-        label: {
-          type: "text",
-          description: "Write content...",
-        },
-      }}
-    >
-      <Story
-        label="Example 1"
-        render={(props = { label: "button" }) => <button>{props.label}</button>}
-      ></Story>
-      <Story label="Example 2">
-        <button>hola - 2</button>
-      </Story>
-    </Stories>
-  </Article>
-);

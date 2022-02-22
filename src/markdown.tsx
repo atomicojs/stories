@@ -15,12 +15,12 @@ export function md(part, ...args) {
         children.push(node);
       }
     } else if (node.type === "pre") {
-      const [[type, ...meta]] = parseCssParams(node.props.type);
+      const [[[type], ...meta]] = parseCssParams(node.props.type) as any;
 
       const tab = meta.find(([fn]) => fn == "tab");
 
       const code = (
-        <Code type="js" value={node.children[0].children.join("\n")}></Code>
+        <Code type={type} value={node.children[0].children.join("\n")}></Code>
       );
       if (tab) {
         const [, [id, label]] = tab as any;

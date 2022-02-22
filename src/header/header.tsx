@@ -3,8 +3,8 @@ import { Props, c, css, useProp, useHost, Meta, DOMEvent } from "atomico";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 
-function header(): Meta<DOMEvent<"ShowMenu">> {
-  const [, setShowMenu] = useProp<boolean>("showMenu");
+function header(): Meta<DOMEvent<"Toggle">> {
+  const [, setToggle] = useProp<boolean>("toggle");
 
   return (
     <host shadowDom>
@@ -12,7 +12,7 @@ function header(): Meta<DOMEvent<"ShowMenu">> {
         <slot name="brand"></slot>
         <button
           class="header-toggle"
-          onclick={() => setShowMenu((showMenu) => !showMenu)}
+          onclick={() => setToggle((showMenu) => !showMenu)}
         >
           <svg width="16" height="16" viewBox="0 0 16 16">
             <path
@@ -28,11 +28,11 @@ function header(): Meta<DOMEvent<"ShowMenu">> {
 }
 
 header.props = {
-  showMenu: {
+  toggle: {
     type: Boolean,
     reflect: true,
     event: {
-      type: "ShowMenu",
+      type: "Toggle",
     },
   },
 };

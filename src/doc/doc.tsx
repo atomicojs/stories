@@ -1,12 +1,13 @@
 import { useRouter, redirect } from "@atomico/hooks/use-router";
 import { useRender } from "@atomico/hooks/use-render";
-import { Props, c, css, useProp, useEffect } from "atomico";
+import { Props, c, css, useProp, useEffect, useUpdate } from "atomico";
 import customElements from "../custom-elements";
 import { Header } from "../header/header";
 import { Aside } from "../aside/aside";
 import { Button } from "../button/button";
 import { Icon } from "../icon/icon";
 import { Scroll } from "../scroll/scroll";
+import { useMediaQuery } from "@atomico/hooks/use-media-query";
 
 import tokens from "../tokens";
 
@@ -22,9 +23,11 @@ export interface ModuloPage {
 }
 
 function doc({ modules, brand }: Props<typeof doc.props>) {
-  const [showMenu, setShowMenu] = useProp("showMenu");
+  const [hideAside, setHideAside] = useProp("hideAside");
 
   const entries = Object.entries(modules);
+
+  const matchMedia = useMediaQuery("(max-width: 520px)");
 
   const groups = entries.reduce(
     (groups, [path, { meta }]) => {
@@ -57,12 +60,27 @@ function doc({ modules, brand }: Props<typeof doc.props>) {
     <host>
       <Header
         slot="header"
-        showMenu={showMenu}
-        onShowMenu={({ currentTarget }) => setShowMenu(currentTarget.showMenu)}
+        toggle={hideAside}
+        onToggle={({ currentTarget }) => {
+          setHideAside(currentTarget.toggle);
+        }}
+        // ref={(node) => (node.hideAside = matchMedia || hideAside)}
       >
-        <img src={brand} alt="" slot="brand" />
+        <img
+          src={brand}
+          alt=""
+          slot="brand"
+          ref={(el) => {
+            el.src;
+          }}
+        />
       </Header>
-      <article slot="article">{view}</article>
+      <article
+        slot="article"
+        onclick={matchMedia ? () => setHideAside(false) : null}
+      >
+        {view}
+      </article>
       <Aside slot="aside" width="var(--aside-max-width)">
         {meta && (
           <Button
@@ -138,9 +156,13 @@ doc.props = {
     value: (): ModuloPage => ({}),
   },
   brand: String,
-  showMenu: {
+  hideAside: {
     type: Boolean,
     reflect: true,
+  },
+  sizeToCollapseAside: {
+    type: String,
+    value: "(max-width: 520px)",
   },
 };
 
@@ -148,15 +170,18 @@ doc.styles = [
   tokens,
   css`
     :host {
+      width: 100%;
       display: flex;
       height: 100%;
-      --col-aside: 0px;
+      --col-aside: var(--aside-max-width);
       --transition: 0.75s ease all;
       background: var(--background);
+      overflow: hidden;
+      position: relative;
     }
 
-    :host([show-menu]) {
-      --col-aside: var(--aside-max-width);
+    :host([hide-aside]) {
+      --col-aside: 0px;
     }
 
     .doc-main {
@@ -175,6 +200,27 @@ doc.styles = [
       margin: auto;
       position: relative;
       z-index: 10;
+    }
+    @media (max-width: 520px) {
+      :host {
+        --transition-delay: 0.5s;
+        --transition: box-shadow 0.75s ease var(--transition-delay),
+          transform 0.75s ease 0s;
+      }
+      .doc-aside {
+        width: var(--aside-max-width);
+        height: 100%;
+        right: 0;
+        top: 0;
+        position: absolute;
+        left: 100%;
+        transform: translateX(var(--translate-aside));
+        box-shadow: var(--aside-shadow, 0px 0px 0px transparent);
+      }
+      :host([hide-aside]) {
+        --translate-aside: -100%;
+        --aside-shadow: var(--aside-phone-box-shadow);
+      }
     }
   `,
 ];
