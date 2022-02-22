@@ -6,6 +6,7 @@ import { Input } from "./stories-input";
 interface FieldBase {
   type: string;
   description?: string;
+  input?: any;
 }
 
 interface FieldGeneric extends FieldBase {

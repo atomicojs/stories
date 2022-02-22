@@ -42,10 +42,6 @@ aside.styles = [
       width: var(--width);
       padding: 5rem 0px;
       box-sizing: border-box;
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-      left: 0;
     }
   `,
 ];

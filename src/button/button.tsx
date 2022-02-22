@@ -50,12 +50,13 @@ button.styles = [
       --gap: 1rem;
       --padding: 0;
       --opacity: 1;
+      ---background: transparent;
       display: block;
     }
     .button {
       width: 100%;
       height: 100%;
-      background: transparent;
+      background: var(---background);
       border: none;
       display: grid;
       align-items: center;
@@ -68,6 +69,7 @@ button.styles = [
       box-sizing: border-box;
       opacity: var(--opacity);
       font-family: unset;
+      transition: var(--transition-1);
     }
     .button-prefix {
       line-height: 0;
@@ -89,7 +91,7 @@ button.styles = [
     }
     :host([theme="aside"][active]) {
       --opacity: 1;
-      background: var(--background);
+      ---background: var(--background);
     }
   `,
 ];

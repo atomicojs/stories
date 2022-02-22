@@ -70,7 +70,6 @@ tabs.styles = [
     .tabs {
       width: 100%;
       display: flex;
-      gap: 1rem;
       max-width: var(--content-max-width);
       margin: 0px auto calc(var(--divide-border-width) * -1);
       position: relative;
@@ -80,10 +79,16 @@ tabs.styles = [
       padding: var(--tab-padding);
       border: none;
       cursor: pointer;
-      border-bottom: var(--active-border-width) solid var(--tab-border-color);
+      padding: 0.5rem 1rem;
+      border: var(--divide-border-width) solid var(--tab-border-color);
+      border-bottom: 0;
+      border-radius: 0.25rem 0.25rem 0 0;
+      transition: var(--transition-1);
+      min-height: var(--active-min-height);
     }
     .tabs-item--active {
-      --tab-border-color: var(--active-border-color);
+      --tab-background: white;
+      --tab-border-color: var(--divide-border-color);
     }
     .tabs-content {
       width: 100%;

@@ -18,8 +18,8 @@ export default css`
     --divide-border-color: #e0e3e2;
     --active-border-width: 2px;
     --active-border-color: #000;
-    --transition-1: 0.35s easea all;
-    --transition-2: 0.5s easea all;
+    --transition-1: 0.35s ease all;
+    --transition-2: 0.5s ease all;
     --background: #fdfdfd;
     --background-deep-1: #fff;
     --background-deep-2: #f4f4f7;
