@@ -4,7 +4,7 @@ import logo from "./logo.svg";
 
 const modules = Object.values(
   //@ts-ignore
-  import.meta.globEager("./docs/*.tsx")
+  import.meta.globEager("./docs/**/*.tsx")
 ).reduce(
   (pages: any, md: any) => ({
     ...pages,

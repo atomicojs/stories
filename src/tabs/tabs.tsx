@@ -73,6 +73,7 @@ tabs.styles = [
       max-width: var(--content-max-width);
       margin: 0px auto calc(var(--divide-border-width) * -1);
       position: relative;
+      overflow: auto;
     }
     .tabs-item {
       background: var(--tab-background);

@@ -10,7 +10,7 @@ export default md`
 
 Una forma rapida y simple de documentar  webcomponents
 
-~~~tsx
+~~~jsx
 import { md } from "@atomico/stories";
 
 export const meta = { 
