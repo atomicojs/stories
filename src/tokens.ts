@@ -38,7 +38,7 @@ export default css`
     --action-min-space: 1rem;
 
     --scroll-width: 10px;
-    --content-max-width: 680px;
+    --content-max-width: 768px;
     --aside-max-width: 260px;
 
     --divide: 1px solid #b9c5cc;

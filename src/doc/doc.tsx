@@ -138,6 +138,13 @@ doc.styles = [
       border-right: var(--divide);
       padding: 1rem 0px;
       box-sizing: border-box;
+      font-size: var(--font-size-small);
+    }
+
+    .aside,
+    .header {
+      position: relative;
+      z-index: 2;
     }
 
     .aside-scroll {
@@ -150,6 +157,7 @@ doc.styles = [
       height: 100%;
       grid-area: content;
       overflow: hidden;
+      background: white;
     }
 
     .content-scroll {

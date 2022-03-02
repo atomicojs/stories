@@ -17,7 +17,7 @@ render(
   <host>
     <Doc modules={modules}>
       <Header slot="header">
-        <img src={logo} slot="brand" />
+        <img height="30px" src={logo} slot="brand" />
       </Header>
     </Doc>
   </host>,
