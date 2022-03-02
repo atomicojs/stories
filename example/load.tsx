@@ -1,5 +1,5 @@
 import { render } from "atomico";
-import { Doc, ModuloPage, Folder, Menu } from "../src/components";
+import { Doc, ModuloPage, Header, Menu } from "../src/components";
 import logo from "./logo.svg";
 
 const modules = Object.values(
@@ -16,16 +16,9 @@ const modules = Object.values(
 render(
   <host>
     <Doc modules={modules}>
-      <img src={logo} slot="brand" />
-      <a slot="link" href="github">
-        Github
-      </a>
-      <a slot="link" href="github">
-        Twitter
-      </a>
-      <Menu slot="menu">
+      <Header slot="header">
         <img src={logo} slot="brand" />
-      </Menu>
+      </Header>
     </Doc>
   </host>,
   document.body

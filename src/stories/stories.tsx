@@ -80,9 +80,7 @@ stories.styles = [
     .stories-props {
       padding-top: 20px;
     }
-    .stories-tabs {
-      margin: 0 10px;
-    }
+
     .stories-header {
       position: relative;
       z-index: 1;

@@ -64,10 +64,12 @@ tabs.styles = [
     :host {
       display: flex;
       flex-flow: column nowrap;
-      --tab-background: var(--bg-color-tab-unselected);
       --tab-padding: 0.25rem 1.5rem;
+      --tab-color: transparent;
+      --tab-font-weight: 600;
     }
     .tabs {
+      width: 100%;
       display: flex;
       max-width: var(--content-max-width);
       margin: 0px auto;
@@ -75,25 +77,23 @@ tabs.styles = [
       overflow: auto;
     }
     .tabs-item {
-      background: var(--tab-background);
+      background: none;
       padding: var(--tab-padding);
-      border: none;
       cursor: pointer;
       padding: var(--tab-padding);
-      border-bottom: 0;
-      border-radius: var(--radius) var(--radius) 0 0;
       transition: var(--transition-1);
       min-height: var(--action-min-size);
       font: unset;
       font-size: var(--font-size-small);
       line-height: 1em;
+      border: none;
+      border-bottom: var(--tab-style) var(--color-tab);
+      font-weight: var(--tab-font-weight);
     }
-    .tabs-item-content {
-      opacity: var(--opacity-tab-unselected);
-    }
-    .tabs-item--active {
-      --tab-background: white;
-      --opacity-tab-unselected: 1;
+
+    .tabs-item:not(.tabs-item--active) {
+      --color-tab: transparent;
+      --tab-font-weight: 500;
     }
     .tabs-content {
       width: 100%;

@@ -1,4 +1,4 @@
-import { Props, c, css, useProp, useHost, Meta, DOMEvent } from "atomico";
+import { c, css, useProp, Meta, DOMEvent } from "atomico";
 
 import customElements from "../custom-elements";
 import tokens from "../tokens";
@@ -9,9 +9,8 @@ function header(): Meta<DOMEvent<"Toggle">> {
   return (
     <host shadowDom>
       <div class="header-row">
-        <slot name="brand"></slot>
         <button
-          class="header-toggle"
+          class="header-action header-action-left"
           onclick={() => setToggle((showMenu) => !showMenu)}
         >
           <svg width="16" height="16" viewBox="0 0 16 16">
@@ -19,6 +18,17 @@ function header(): Meta<DOMEvent<"Toggle">> {
               d="M-34,246a1,1,0,0,1-1-1,1,1,0,0,1,1-1h14a1,1,0,0,1,1,1,1,1,0,0,1-1,1Zm0-5a1,1,0,0,1-1-1,1,1,0,0,1,1-1h14a1,1,0,0,1,1,1,1,1,0,0,1-1,1Zm0-5a1,1,0,0,1-1-1,1,1,0,0,1,1-1h14a1,1,0,0,1,1,1,1,1,0,0,1-1,1Z"
               transform="translate(35 -232)"
               fill="#2c3a41"
+            />
+          </svg>
+        </button>
+        <div class="header-brand">
+          <slot name="brand"></slot>
+        </div>
+        <button class="header-action header-action-right">
+          <svg width="19.799" height="19.799" viewBox="0 0 19.799 19.799">
+            <path
+              d="M-11258.5,3a6,6,0,0,1,6-6,6,6,0,0,1,5.916,5h3.083a1,1,0,0,1,1,1,1,1,0,0,1-1,1h-3.083a6,6,0,0,1-5.916,5A6,6,0,0,1-11258.5,3Zm2,0a4,4,0,0,0,4,4,4,4,0,0,0,4-4,4,4,0,0,0-4-4A4,4,0,0,0-11256.5,3Z"
+              transform="translate(7967.326 7963.084) rotate(45)"
             />
           </svg>
         </button>
@@ -41,29 +51,37 @@ header.styles = [
   tokens,
   css`
     :host {
+      --height: 60px;
       width: 100%;
-      display: block;
-      padding: 30px 0px;
-      --scale-aside: 0;
-      --transition-ms: 0.5s;
-      --transition-delay: var(--transition-ms);
-      --transform: translateX(150%);
-      --transition: var(--transition-ms) ease all;
+      display: flex;
+      justify-content: center;
+      border-bottom: var(--divide);
     }
     .header-row {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
+      width: 100%;
+      display: grid;
+      grid-template: var(--height) / var(--height) auto var(--height);
     }
-    .header-toggle {
-      width: 40px;
-      height: 40px;
-      background: transparent;
-      border: none;
+
+    .header-brand,
+    .header-action {
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+    }
+
+    .header-action {
+      width: var(--height);
+      background: none;
+      border: none;
+      padding: none;
+      font: unset;
+    }
+    .header-action-right {
+      border-left: var(--divide);
+    }
+    .header-action-left {
+      border-right: var(--divide);
     }
   `,
 ];

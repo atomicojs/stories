@@ -71,10 +71,11 @@ folder.styles = [
   tokens,
   css`
     :host {
-      --bg-color: transparent;
+      --font-weight: 600;
     }
-    :host([active]) {
-      --bg-color: var(--bg-color-action);
+    :host(:not([active])) {
+      --color-tab: transparent;
+      --font-weight: 400;
     }
     .folder-row {
       width: 100%;
@@ -85,11 +86,12 @@ folder.styles = [
       justify-content: flex-start;
       font: unset;
       border: none;
-      background: var(--bg-color);
       text-decoration: none;
       color: unset;
       box-sizing: border-box;
       border-radius: var(--radius);
+      border-right: var(--tab-style) var(--color-tab);
+      font-weight: var(--font-weight);
     }
     .folder-sub {
       padding-left: calc(1em * var(--folder-indent));

@@ -45,7 +45,7 @@ button.styles = [
       --bg-color: var(--bg-color-action);
       --border: none;
     }
-    :host([rounted]) {
+    :host([rounded]) {
       --radius: var(--radius-rounded);
     }
     button {

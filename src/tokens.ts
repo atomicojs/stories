@@ -3,10 +3,10 @@ import { css } from "atomico";
 export const tokensArticle = css`
   :host {
     --embed-radius: 0.5rem;
-    --title-h1: clamp(2.2rem, 3.4vw, 2.8rem);
-    --title-h2: clamp(1.8rem, 3vw, 2.4rem);
-    --title-h3: clamp(1.4rem, 2.8vw, 2.2rem);
-    --title-h4: clamp(1rem, 2.4vw, 1.8rem);
+    --title-h1: 32px;
+    --title-h2: 28px;
+    --title-h3: 22px;
+    --title-h4: 18px;
     --blockquote-border: 2px solid currentColor;
     --blockquote-space: 0.25rem 0 0.25rem 1rem;
   }
@@ -14,7 +14,7 @@ export const tokensArticle = css`
 
 export default css`
   :host {
-    --radius: 0.5rem;
+    --radius: 0;
     --radius-rounded: 100px;
 
     --indent: 5%;
@@ -30,6 +30,7 @@ export default css`
     --color-story: currentColor;
     --color-code: white;
     --color-action: currentColor;
+    --color-tab: black;
 
     --opacity-tab-unselected: 0.5;
 
@@ -38,7 +39,10 @@ export default css`
 
     --scroll-width: 10px;
     --content-max-width: 680px;
-    --aside-max-width: 280px;
+    --aside-max-width: 260px;
+
+    --divide: 1px solid #b9c5cc;
+    --tab-style: 2px solid;
 
     --padding-y: 2rem;
   }

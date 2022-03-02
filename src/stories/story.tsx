@@ -61,11 +61,6 @@ story.props = {
   label: String,
   values: Object,
   render: Function,
-  align: {
-    type: String,
-    reflect: true,
-    value: "center",
-  },
   showCode: {
     type: Boolean,
     reflect: true,
@@ -90,6 +85,12 @@ story.styles = [
       margin: auto;
     }
 
+    .story-content {
+      min-height: 15vh;
+      display: flex;
+      align-items: center;
+    }
+
     .story-meta {
       max-width: var(--content-max-width);
       margin: auto;
@@ -101,9 +102,6 @@ story.styles = [
       right: 0;
       bottom: 0;
       transform: translateY(50%);
-    }
-    .story-code {
-      margin: 0px 10px 10px 10px;
     }
   `,
 ];
