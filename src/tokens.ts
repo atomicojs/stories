@@ -14,25 +14,35 @@ export const tokensArticle = css`
 
 export default css`
   :host {
-    --divide-border-width: 1px;
-    --divide-border-color: #e0e3e2;
-    --active-border-width: 2px;
-    --active-border-color: #000;
-    --transition-1: 0.35s ease all;
-    --transition-2: 0.5s ease all;
-    --background: #fdfdfd;
-    --background-deep-1: #fff;
-    --background-deep-2: #f4f4f7;
-    --background-code: var(--background-deep-1);
-    --code-color: currentColor;
-    --content-max-width: 768px;
-    --aside-max-width: 220px;
-    --space-y: 2rem;
-    --active-min-height: 2rem;
-    --aside-font-size: 14px;
-    --aside-phone-box-shadow: -100px 0px 100px rgba(13, 42, 62, 0.1);
+    --radius: 0.5rem;
+    --radius-rounded: 100px;
+
+    --indent: 5%;
+
+    --font-size-small: 0.875rem;
+
+    --bg-color: #f6f9f9;
+    --bg-color-story: #fff;
+    --bg-color-code: #0a0024;
+    --bg-color-action: #dde0e0;
+
+    --color: currentColor;
+    --color-story: currentColor;
+    --color-code: white;
+    --color-action: currentColor;
+
+    --opacity-tab-unselected: 0.5;
+
+    --action-min-size: 2.5rem;
+    --action-min-space: 1rem;
+
     --scroll-width: 10px;
+    --content-max-width: 680px;
+    --aside-max-width: 220px;
+
+    --padding-y: 2rem;
   }
+
   @media (max-width: 980px) {
     :host {
       --content-max-width: 80%;

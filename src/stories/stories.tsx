@@ -24,6 +24,7 @@ function stories({ props }: Props<typeof stories.props>) {
       <Tabs
         value={value}
         onChangeTab={({ currentTarget }) => setValue(currentTarget.value)}
+        class="stories-tabs"
       >
         {storiesList.map(({ label }, index) => (
           <span slot="tab" value={index} full-width>
@@ -78,6 +79,9 @@ stories.styles = [
     }
     .stories-props {
       padding-top: 20px;
+    }
+    .stories-tabs {
+      margin: 0 10px;
     }
     .stories-header {
       position: relative;

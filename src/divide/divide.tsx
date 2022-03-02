@@ -10,7 +10,7 @@ function divide() {
   );
 }
 
-divide.props = { fullWidth: { type: Boolean, reflect: true, value: true } };
+divide.props = { fullWidth: { type: Boolean, reflect: true, value: false } };
 
 divide.styles = [
   tokens,
@@ -18,9 +18,10 @@ divide.styles = [
     :host {
       display: block;
       width: 100%;
-      --border: var(--divide-border-width) solid var(--divide-border-color);
       border-top: var(--border);
       border-bottom: var(--border);
+      border-radius: var(--divide-border-radius);
+      overflow: hidden;
     }
   `,
 ];

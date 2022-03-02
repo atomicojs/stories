@@ -101,7 +101,7 @@ storiesProps.props = {
 
 storiesProps.styles = css`
   :host {
-    --font-size-table: 12px;
+    --font-size-table: var(--font-size-small);
     display: grid;
     grid-gap: 20px;
   }

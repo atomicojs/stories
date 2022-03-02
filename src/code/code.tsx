@@ -75,14 +75,22 @@ code.styles = [
   css`
     :host {
       display: flex;
-      padding: 1.5rem 0px;
-      background: var(--background-code);
-      color: var(--code-color);
+      background: var(--bg-color-code);
+      color: var(--color-code);
+      font-size: var(--font-size-small);
+      border-radius: var(--radius);
     }
     .code {
       width: 100%;
       max-width: var(--content-max-width);
       margin: auto;
+      overflow: auto;
+      padding: 1.5rem var(--indent);
+    }
+    code,
+    pre {
+      font-size: unset;
+      font-family: unset;
     }
   `,
 ];

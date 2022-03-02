@@ -7,3 +7,5 @@ export { Button } from "./button/button";
 export { Icon, icons } from "./icon/icon";
 export { Divide } from "./divide/divide";
 export { Scroll } from "./scroll/scroll";
+export { Folder } from "./folder/folder";
+export { Menu } from "./menu/menu";

@@ -35,6 +35,8 @@ input.props = {
 input.styles = css`
   ::slotted(*) {
     min-height: 30px;
+    background: transparent;
+    font: unset;
   }
   ::slotted(select),
   ::slotted([type]:not([type="checkbox"])) {

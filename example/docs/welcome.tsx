@@ -2,7 +2,7 @@ import { md, Stories, Story } from "../../src/core";
 
 export const meta = {
   title: "Welcome",
-  path: "/",
+  path: "/s",
 };
 
 export default md`

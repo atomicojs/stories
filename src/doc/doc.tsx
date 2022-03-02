@@ -1,11 +1,7 @@
-import { useRouter, redirect } from "@atomico/hooks/use-router";
+import { Props, c, css, useProp, useEffect, useHost } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
-import { Props, c, css, useProp, useEffect, useUpdate } from "atomico";
+import { useRouter, useRedirect } from "@atomico/hooks/use-router";
 import customElements from "../custom-elements";
-import { Header } from "../header/header";
-import { Aside } from "../aside/aside";
-import { Button } from "../button/button";
-import { Icon } from "../icon/icon";
 import { Scroll } from "../scroll/scroll";
 import { useMediaQuery } from "@atomico/hooks/use-media-query";
 
@@ -22,12 +18,14 @@ export interface ModuloPage {
   };
 }
 
-function doc({ modules, brand }: Props<typeof doc.props>) {
+function doc({ modules }: Props<typeof doc.props>) {
   const [hideAside, setHideAside] = useProp("hideAside");
 
   const entries = Object.entries(modules);
 
   const matchMedia = useMediaQuery("(max-width: 520px)");
+
+  const host = useHost();
 
   const groups = entries.reduce(
     (groups, [path, { meta }]) => {
@@ -56,76 +54,16 @@ function doc({ modules, brand }: Props<typeof doc.props>) {
     )
   );
 
+  useRedirect(host);
+
   useRender(() => (
     <host>
-      <Header
-        slot="header"
-        toggle={hideAside}
-        onToggle={({ currentTarget }) => {
-          setHideAside(currentTarget.toggle);
-        }}
-        // ref={(node) => (node.hideAside = matchMedia || hideAside)}
-      >
-        <img
-          src={brand}
-          alt=""
-          slot="brand"
-          ref={(el) => {
-            el.src;
-          }}
-        />
-      </Header>
       <article
         slot="article"
         onclick={matchMedia ? () => setHideAside(false) : null}
       >
         {view}
       </article>
-      <Aside slot="aside" width="var(--aside-max-width)">
-        {meta && (
-          <Button
-            theme="aside"
-            slot="link"
-            active={meta.path === viewId}
-            onclick={(event) => {
-              event.preventDefault();
-              redirect(meta.path);
-            }}
-          >
-            <span slot="prefix">
-              <Icon type="component"></Icon>
-            </span>
-            <span>{meta.title}</span>
-          </Button>
-        )}
-        {Object.entries(subgrops).map(function g([
-          title,
-          { meta, deep, ...subgrops },
-        ]) {
-          return [
-            <Button
-              theme="aside"
-              slot="link"
-              active={meta?.path === viewId}
-              indent={deep + 1}
-              onclick={
-                meta?.path
-                  ? (event) => {
-                      event.preventDefault();
-                      redirect(meta?.path);
-                    }
-                  : null
-              }
-            >
-              <span slot="prefix">
-                <Icon type={meta ? "component" : "folder"}></Icon>
-              </span>
-              <span>{title}</span>
-            </Button>,
-            Object.entries(subgrops).map(g),
-          ];
-        })}
-      </Aside>
     </host>
   ));
 
@@ -135,17 +73,13 @@ function doc({ modules, brand }: Props<typeof doc.props>) {
 
   return (
     <host shadowDom>
+      <slot name="menu"></slot>
       <Scroll class="doc-main">
-        <header class="doc-header">
-          <slot name="header"></slot>
-        </header>
+        <slot name="header"></slot>
         <div class="doc-article">
           <slot name="article"></slot>
         </div>
       </Scroll>
-      <aside class="doc-aside">
-        <slot name="aside"></slot>
-      </aside>
     </host>
   );
 }
@@ -155,7 +89,6 @@ doc.props = {
     type: Object,
     value: (): ModuloPage => ({}),
   },
-  brand: String,
   hideAside: {
     type: Boolean,
     reflect: true,
@@ -175,7 +108,7 @@ doc.styles = [
       height: 100%;
       --col-aside: var(--aside-max-width);
       --transition: 0.75s ease all;
-      background: var(--background);
+      background: var(--bg-color);
       overflow: hidden;
       position: relative;
     }
@@ -192,15 +125,17 @@ doc.styles = [
     .doc-aside {
       width: var(--col-aside);
       transition: var(--transition);
+      position: relative;
     }
 
-    .doc-header {
-      width: 100%;
-      max-width: var(--content-max-width);
-      margin: auto;
-      position: relative;
-      z-index: 10;
+    ::slotted([slot="link"]) {
+      display: flex;
+      color: unset;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
     }
+
     @media (max-width: 520px) {
       :host {
         --transition-delay: 0.5s;

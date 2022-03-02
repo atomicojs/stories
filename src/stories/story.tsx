@@ -41,7 +41,7 @@ function story({ values, render: propRender }: Props<typeof story.props>) {
       </div>
       <div class="story-meta">
         <div class="story-buttons">
-          <Button onclick={() => setShowCode(!showCode)} theme="square">
+          <Button onclick={() => setShowCode(!showCode)}>
             <Icon type="code"></Icon>
           </Button>
         </div>
@@ -61,6 +61,11 @@ story.props = {
   label: String,
   values: Object,
   render: Function,
+  align: {
+    type: String,
+    reflect: true,
+    value: "center",
+  },
   showCode: {
     type: Boolean,
     reflect: true,
@@ -76,11 +81,11 @@ story.styles = [
   css`
     :host {
       display: block;
-      --_space-y: calc(var(--space-y) / 2);
+      --_padding-y: calc(var(--padding-y) / 2);
     }
 
     :host(:not([full-width])) .story-content {
-      padding: var(--space-y) 0 0;
+      padding: var(--padding-y) 0 0;
       max-width: var(--content-max-width);
       margin: auto;
     }
@@ -88,7 +93,7 @@ story.styles = [
     .story-meta {
       max-width: var(--content-max-width);
       margin: auto;
-      padding: var(--_space-y) 0;
+      padding: var(--_padding-y) 0;
       position: relative;
     }
     .story-buttons {
@@ -98,7 +103,7 @@ story.styles = [
       transform: translateY(50%);
     }
     .story-code {
-      border-top: var(--divide-border-width) solid var(--divide-border-color);
+      margin: 0px 10px 10px 10px;
     }
   `,
 ];

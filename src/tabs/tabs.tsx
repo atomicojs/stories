@@ -23,7 +23,9 @@ function tabs(): Meta<DOMEvent<"ChangeTab">> {
             )}
             onclick={() => setValue(child.getAttribute("value"))}
           >
-            <slot name={(child.slot = "tab-" + index)}></slot>
+            <span class="tabs-item-content">
+              <slot name={(child.slot = "tab-" + index)}></slot>
+            </span>
           </button>
         ))}
       </div>
@@ -53,7 +55,6 @@ tabs.props = {
   fullWidth: {
     type: Boolean,
     reflect: true,
-    value: true,
   },
 };
 
@@ -61,17 +62,15 @@ tabs.styles = [
   tokens,
   css`
     :host {
-      --tab-background: transparent;
-      --tab-padding: 0.5rem 0px;
-      --tab-border-color: transparent;
       display: flex;
       flex-flow: column nowrap;
+      --tab-background: var(--bg-color-tab-unselected);
+      --tab-padding: 0.25rem 1.5rem;
     }
     .tabs {
-      width: 100%;
       display: flex;
       max-width: var(--content-max-width);
-      margin: 0px auto calc(var(--divide-border-width) * -1);
+      margin: 0px auto;
       position: relative;
       overflow: auto;
     }
@@ -80,25 +79,29 @@ tabs.styles = [
       padding: var(--tab-padding);
       border: none;
       cursor: pointer;
-      padding: 0.5rem 1rem;
-      border: var(--divide-border-width) solid var(--tab-border-color);
+      padding: var(--tab-padding);
       border-bottom: 0;
-      border-radius: 0.25rem 0.25rem 0 0;
+      border-radius: var(--radius) var(--radius) 0 0;
       transition: var(--transition-1);
-      min-height: var(--active-min-height);
+      min-height: var(--action-min-size);
+      font: unset;
+      font-size: var(--font-size-small);
+      line-height: 1em;
+    }
+    .tabs-item-content {
+      opacity: var(--opacity-tab-unselected);
     }
     .tabs-item--active {
       --tab-background: white;
-      --tab-border-color: var(--divide-border-color);
+      --opacity-tab-unselected: 1;
     }
     .tabs-content {
       width: 100%;
-      border: var(--divide-border-width) solid var(--divide-border-color);
-
       display: flex;
       flex-flow: column nowrap;
       align-items: center;
-      background: var(--background-deep-1);
+      background: var(--bg-color-story);
+      border-radius: var(--radius);
     }
 
     .tabs-full-width {

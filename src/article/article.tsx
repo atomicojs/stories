@@ -75,7 +75,6 @@ article.styles = [
       margin: auto;
     }
     ::slotted(p) {
-      font-size: 14px;
       line-height: 2em;
     }
     ::slotted([columns]) {

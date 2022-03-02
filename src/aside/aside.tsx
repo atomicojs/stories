@@ -8,9 +8,29 @@ function aside({ width }: Props<typeof aside>) {
     <host shadowDom>
       <Scroll>
         <div class="aside-mask">
-          <div class="links">
-            <slot name="link"></slot>
-          </div>
+          <doc-folder
+            directory={{
+              items: {
+                "/": {
+                  label: "welcome",
+                },
+                components: {
+                  label: "Components",
+                  items: {
+                    buttons: { label: "Buttons" },
+                    alerts: { label: "alerts" },
+                    cards: { label: "cards" },
+                  },
+                },
+                socials: {
+                  label: "Socials",
+                  items: {
+                    github: { label: "Github" },
+                  },
+                },
+              },
+            }}
+          ></doc-folder>
         </div>
         <style>{`:host{--width: ${width}}`}</style>
       </Scroll>

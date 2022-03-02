@@ -4,7 +4,7 @@ import { serialize } from "atomico/utils";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 
-function button({ indent }: Props<typeof button>) {
+function button() {
   const refSlot = useRef();
   const refSlotPrefix = useRef();
   const slot = useSlot(refSlot);
@@ -27,71 +27,36 @@ function button({ indent }: Props<typeof button>) {
       <style>
         {":host{"}
         --columns: {!!slotPrefix.length && "var(--prefix-width)"}
-        {!!slot.length && "auto"}; --indent: {indent || 1};{"}"}
       </style>
     </host>
   );
 }
 
 button.props = {
-  theme: { type: String, reflect: true },
   active: { type: Boolean, reflect: true },
-  indent: { type: Number },
+  rounded: { type: Boolean, reflect: true },
 };
 
 button.styles = [
   tokens,
   css`
     :host {
-      min-height: var(--active-min-height);
-      --prefix-width: auto;
-      --justify-content: center;
-      --font-size: 14px;
-      --gap: 1rem;
-      --padding: 0;
-      --opacity: 1;
-      ---background: transparent;
-      display: block;
+      --min-size: var(--action-min-size);
+      --bg-color: var(--bg-color-action);
+      --border: none;
     }
-    .button {
-      width: 100%;
-      height: 100%;
-      background: var(---background);
-      border: none;
-      display: grid;
-      align-items: center;
-      justify-content: var(--justify-content);
-      padding: var(--padding);
-      font-size: var(--font-size);
-      grid-template-columns: var(--columns);
-      grid-gap: var(--gap);
+    :host([rounted]) {
+      --radius: var(--radius-rounded);
+    }
+    button {
+      min-width: var(--min-size);
+      min-height: var(--min-size);
+      background: var(--bg-color);
+      border-radius: var(--radius);
+      border: var(--border);
+      font: unset;
+      line-height: 1em;
       cursor: pointer;
-      box-sizing: border-box;
-      opacity: var(--opacity);
-      font-family: unset;
-      transition: var(--transition-1);
-    }
-    .button-prefix {
-      line-height: 0;
-    }
-    .hidden {
-      display: none;
-    }
-    :host([theme="square"]) {
-      width: var(--active-min-height);
-      height: var(--active-min-height);
-      border: var(--divide-border-width) solid var(--divide-border-color);
-      background: var(--background-deep-1);
-      cursor: pointer;
-    }
-    :host([theme="aside"]) {
-      --justify-content: flex-start;
-      --padding: 0.5rem 1rem 0.5rem calc(1rem * var(--indent));
-      --opacity: 0.6;
-    }
-    :host([theme="aside"][active]) {
-      --opacity: 1;
-      ---background: var(--background);
     }
   `,
 ];
