@@ -21,7 +21,7 @@ export default css`
 
     --font-size-small: 0.875rem;
 
-    --bg-color: #f6f9f9;
+    --bg-color: #eaf5f5;
     --bg-color-story: #fff;
     --bg-color-code: #0a0024;
     --bg-color-action: #dde0e0;
@@ -38,7 +38,7 @@ export default css`
 
     --scroll-width: 10px;
     --content-max-width: 680px;
-    --aside-max-width: 220px;
+    --aside-max-width: 280px;
 
     --padding-y: 2rem;
   }

@@ -1,42 +1,51 @@
-import { Props, c, css, useEvent } from "atomico";
+import { Props, c, css } from "atomico";
 import customElements from "../custom-elements";
 import { IconFolder, IconSlash } from "./icons";
+import { useRouteMatch } from "@atomico/hooks/use-router";
+import tokens from "../tokens";
 
 interface Directory {
-  label?: string;
+  title?: string;
   icon?: any;
-  href?: string;
+  path?: string;
   items?: {
     [slug: string]: Directory;
   };
 }
 
 function folder({ directory, slug, indent }: Props<typeof folder>) {
-  const { label = slug, items, icon, href } = directory;
+  const { title = slug, items, icon, path } = directory;
+
+  const match = useRouteMatch();
+
+  const entries = items ? Object.entries(items) : [];
 
   return (
-    <host shadowDom>
-      {label && (
-        <a class="folder-row" href={href || slug}>
+    <host shadowDom active={path && match(path) ? true : false}>
+      {title && (
+        <a class="folder-row" href={path}>
           <div>
-            {icon || items ? (
+            {icon ? (
+              icon
+            ) : entries.length && !path ? (
               <IconFolder cloneNode></IconFolder>
             ) : (
               <IconSlash cloneNode></IconSlash>
             )}
           </div>
-          <div>{label}</div>
+          <div>{title}</div>
         </a>
       )}
-      {items &&
-        Object.entries(items).map(([nextSlug, item]) => (
+      <div class="folder-sub">
+        {entries.map(([nextSlug, item]) => (
           <Folder
             indent={indent + 1}
             directory={item}
             slug={(nextSlug == "/" ? "" : (slug || "") + "/") + nextSlug}
           ></Folder>
         ))}
-      <style>{`:host{--indent:${indent};}`}</style>
+      </div>
+      <style>{`:host{--folder-indent:${indent};}`}</style>
     </host>
   );
 }
@@ -52,24 +61,41 @@ folder.props = {
     type: Object,
     value: (): Directory => ({}),
   },
+  active: {
+    type: Boolean,
+    reflect: true,
+  },
 };
 
-folder.styles = css`
-  .folder-row {
-    width: 100%;
-    display: grid;
-    padding: 0.5em 1em 0.5em calc(1em * var(--indent));
-    grid-template-columns: 20px auto;
-    grid-gap: 0.625em;
-    justify-content: flex-start;
-    font: unset;
-    border: none;
-    background: none;
-    text-decoration: none;
-    color: unset;
-    box-sizing: border-box;
-  }
-`;
+folder.styles = [
+  tokens,
+  css`
+    :host {
+      --bg-color: transparent;
+    }
+    :host([active]) {
+      --bg-color: var(--bg-color-action);
+    }
+    .folder-row {
+      width: 100%;
+      display: grid;
+      padding: 0.5em 1em;
+      grid-template-columns: 20px auto;
+      grid-gap: 0.625em;
+      justify-content: flex-start;
+      font: unset;
+      border: none;
+      background: var(--bg-color);
+      text-decoration: none;
+      color: unset;
+      box-sizing: border-box;
+      border-radius: var(--radius);
+    }
+    .folder-sub {
+      padding-left: calc(1em * var(--folder-indent));
+    }
+  `,
+];
 
 export const Folder = c(folder);
 

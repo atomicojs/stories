@@ -1,54 +1,27 @@
 import { c, css, Props, useEvent } from "atomico";
+import { useChannel } from "@atomico/hooks/use-channel";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 import { Scroll } from "../scroll/scroll";
 import { Folder } from "../folder/folder";
-import { Button } from "../button/button";
 
 function menu({ width }: Props<typeof menu>) {
-  const dispatchRedirect = useEvent("Redirect", {
-    bubbles: true,
-    composed: true,
-  });
+  const [docMenu] = useChannel("DocMenu");
+
   return (
     <host shadowDom>
       <div class="menu-content">
-        <div class="menu-brand" onclick={() => dispatchRedirect("/")}>
+        <a class="menu-brand" href="/">
           <slot name="brand"></slot>
-        </div>
+        </a>
         <Scroll>
           <div class="menu-mask">
-            <Folder
-              directory={{
-                items: {
-                  "/": {
-                    label: "welcome",
-                  },
-                  components: {
-                    label: "Components",
-                    items: {
-                      buttons: { label: "Buttons" },
-                      alerts: { label: "alerts" },
-                      cards: { label: "cards" },
-                    },
-                  },
-                  socials: {
-                    label: "Socials",
-                    items: {
-                      github: { label: "Github" },
-                    },
-                  },
-                },
-              }}
-            ></Folder>
+            <Folder directory={docMenu}></Folder>
           </div>
           <style>{`:host{--width: ${width}}`}</style>
         </Scroll>
         <div class="menu-footer">
           <slot name="footer"></slot>
-        </div>
-        <div class="menu-toggle">
-          <Button style="--bg-color: #75F9C8"></Button>
         </div>
       </div>
     </host>
@@ -63,10 +36,11 @@ menu.styles = [
   tokens,
   css`
     :host {
-      --width: 220px;
-      position: relative;
+      width: 100%;
+      height: 100%;
       display: block;
-      padding: 10px;
+      position: relative;
+      box-sizing: border-box;
     }
     .links {
       width: 100%;
@@ -74,7 +48,6 @@ menu.styles = [
       flex-flow: column;
     }
     .menu-mask {
-      width: var(--width);
       padding: 1rem 0px;
       box-sizing: border-box;
       display: flex;
