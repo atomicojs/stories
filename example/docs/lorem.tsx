@@ -8,7 +8,7 @@ export const meta = {
 export default md`
 # My story ${(<br />)} component
 
-et est sit ipsum occaecat id do excepteur ullamco labore non labore consequat deserunt veniam anim fugiat tempor non proident dolore proident commodo incididunt amet tempor pariatur ullamco qui voluptate minim tempor exercitation nisi voluptate sit laboris adipisicing officia velit qui ut commodo proident in ea laborum
+> et est sit ipsum occaecat id do excepteur ullamco labore non labore consequat deserunt veniam anim fugiat tempor non proident dolore proident commodo incididunt amet tempor pariatur ullamco qui voluptate minim tempor exercitation nisi voluptate sit laboris adipisicing officia velit qui ut commodo proident in ea laborum
 
 et est sit ipsum occaecat id do excepteur ullamco labore non labore consequat deserunt veniam anim fugiat tempor non proident dolore proident commodo incididunt amet tempor pariatur ullamco qui voluptate minim tempor exercitation nisi voluptate sit laboris adipisicing officia velit qui ut commodo proident in ea laborum
 

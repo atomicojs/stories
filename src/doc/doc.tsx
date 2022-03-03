@@ -76,21 +76,23 @@ function doc({ modules }: Props<typeof doc.props>) {
 
   return (
     <host shadowDom>
-      <div class="header">
-        <slot name="header"></slot>
-      </div>
-      <div class="aside">
-        <Scroll class="aside-scroll">
-          <Folder directory={groups}></Folder>
-        </Scroll>
+      <div class="aside aside-left">
+        <div className="aside-inner">
+          <div class="aside-brand">
+            <slot name="brand"></slot>
+          </div>
+          <Scroll class="aside-scroll">
+            <Folder directory={groups}></Folder>
+          </Scroll>
+          <slot name="footer"></slot>
+        </div>
       </div>
       <div class="content">
-        <Scroll class="content-scroll">
-          <div class="article-inner">
-            <slot name="article"></slot>
-          </div>
-        </Scroll>
+        <div class="article-inner">
+          <slot name="article"></slot>
+        </div>
       </div>
+      <div class="aside aside-right"></div>
     </host>
   );
 }
@@ -123,41 +125,52 @@ doc.styles = [
       height: 100%;
       display: grid;
       grid-template:
-        "header header" 60px
-        "aside content" auto / var(--aside-max-width) 1fr;
-      overflow: hidden;
+        "aside-left content aside-right" auto / 1fr var(--content-max-width)
+        1fr;
+      grid-gap: 60px;
+      overflow: hidden auto;
       background: var(--bg-color);
-    }
-
-    .header {
-      grid-area: header;
+      align-items: flex-start;
     }
 
     .aside {
-      grid-area: aside;
-      border-right: var(--divide);
-      padding: 1rem 0px;
-      box-sizing: border-box;
+      grid-area: aside-left;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: flex-end;
       font-size: var(--font-size-small);
     }
 
-    .aside,
-    .header {
-      position: relative;
-      z-index: 2;
+    .aside-inner {
+      width: 100%;
+      max-width: var(--aside-max-width);
+      padding: 2rem 0px;
+      display: grid;
+      grid-gap: 2rem;
+      justify-content: center;
     }
 
     .aside-scroll {
       width: 100%;
-      height: 100%;
+      height: auto;
+    }
+
+    .aside-brand {
+      padding: 0px 1rem;
+    }
+
+    .aside-left {
+      grid-area: aside-left;
+    }
+    .aside-right {
+      grid-area: aside-right;
     }
 
     .content {
       width: 100%;
       height: 100%;
       grid-area: content;
-      overflow: hidden;
-      background: white;
     }
 
     .content-scroll {

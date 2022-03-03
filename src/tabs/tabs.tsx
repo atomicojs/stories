@@ -15,30 +15,23 @@ function tabs(): Meta<DOMEvent<"ChangeTab">> {
     <host shadowDom>
       <slot name="tab" ref={ref}></slot>
       <div class="tabs">
-        {children.map((child, index) => (
-          <button
-            class={serialize(
-              "tabs-item",
-              value === child.getAttribute("value") && "tabs-item--active"
-            )}
-            onclick={() => setValue(child.getAttribute("value"))}
-          >
-            <span class="tabs-item-content">
+        <div className="tabs-items">
+          {children.map((child, index) => (
+            <button
+              class={serialize(
+                "tabs-item",
+                value === child.getAttribute("value") && "tabs-item--active"
+              )}
+              onclick={() => setValue(child.getAttribute("value"))}
+            >
               <slot name={(child.slot = "tab-" + index)}></slot>
-            </span>
-          </button>
-        ))}
-      </div>
-      <div className="tabs-content">
-        <div
-          class={
-            current?.hasAttribute("full-width")
-              ? "tabs-full-width"
-              : "tabs-maxwidth"
-          }
-        >
-          <slot name={value}></slot>
+            </button>
+          ))}
         </div>
+        <slot name="options"></slot>
+      </div>
+      <div className="tabs-inner">
+        <slot name={value}></slot>
       </div>
     </host>
   );
@@ -62,58 +55,34 @@ tabs.styles = [
   tokens,
   css`
     :host {
-      display: flex;
-      flex-flow: column nowrap;
-      --tab-padding: 0.25rem 1.5rem;
-      --tab-color: transparent;
-      --tab-font-weight: 600;
+      display: block;
+      border-radius: var(--radius);
+      background: var(--bg-color-story);
+      box-shadow: var(--shadow-embed);
     }
     .tabs {
       width: 100%;
       display: flex;
-      max-width: var(--content-max-width);
-      margin: 0px auto;
+      justify-content: space-between;
+      border-bottom: var(--divide);
+      font-size: var(--font-size-small);
+    }
+    .tabs-items {
       position: relative;
-      overflow: auto;
+      z-index: 1;
     }
     .tabs-item {
-      background: none;
-      padding: var(--tab-padding);
-      cursor: pointer;
-      padding: var(--tab-padding);
-      transition: var(--transition-1);
-      min-height: var(--action-min-size);
-      font: unset;
-      font-size: var(--font-size-small);
-      line-height: 1em;
+      background: transparent;
       border: none;
-      border-bottom: var(--tab-style) var(--color-tab);
-      font-weight: var(--tab-font-weight);
+      height: var(--action-min-size);
+      padding: 0px var(--padding-x);
+      font: unset;
+      margin-bottom: calc(var(--divide-size) * -1);
+      border-bottom: var(--divide-size) solid transparent;
+      cursor: pointer;
     }
-
-    .tabs-item:not(.tabs-item--active) {
-      --color-tab: transparent;
-      --tab-font-weight: 500;
-    }
-    .tabs-content {
-      width: 100%;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-      background: var(--bg-color-story);
-      border-radius: var(--radius);
-    }
-
-    .tabs-full-width {
-      width: 100%;
-    }
-    .tabs-maxwidth {
-      width: 100%;
-      max-width: var(--content-max-width);
-    }
-    :host([full-width]) .tabs-content {
-      border-left: none;
-      border-right: none;
+    .tabs-item--active.tabs-item {
+      border-bottom: var(--divide-size) solid var(--color-tab);
     }
   `,
 ];

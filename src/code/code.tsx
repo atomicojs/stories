@@ -67,6 +67,10 @@ code.props = {
     reflect: true,
     value: true,
   },
+  disableRadiusTop: {
+    type: Boolean,
+    reflect: true,
+  },
 };
 
 code.styles = [
@@ -79,6 +83,7 @@ code.styles = [
       color: var(--color-code);
       font-size: var(--font-size-small);
       border-radius: var(--radius);
+      line-height: 1.6em;
     }
     .code {
       width: 100%;
@@ -91,6 +96,9 @@ code.styles = [
     pre {
       font-size: unset;
       font-family: unset;
+    }
+    :host([disable-radius-top]) {
+      border-radius: 0 0 var(--radius) var(--radius);
     }
   `,
 ];

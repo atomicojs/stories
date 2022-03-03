@@ -1,8 +1,10 @@
-import { Props, c, css } from "atomico";
+import { Props, c, css, useProp } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
 import customElements from "../custom-elements";
 
 function input({ type, name, options }: Props<typeof input.props>) {
+  const [checked, setChecked] = useProp("checked");
+  const [value, setValue] = useProp("value");
   useRender(() =>
     type === "select" ? (
       <select name={name}>
@@ -14,6 +16,13 @@ function input({ type, name, options }: Props<typeof input.props>) {
         name={name}
         type={type === "switch" ? "checkbox" : type}
         placeholder="Write..."
+        onchange={({ currentTarget }) => {
+          if (type == "switch") {
+            setChecked(currentTarget.checked);
+          } else {
+            setValue(currentTarget.value);
+          }
+        }}
       />
     )
   );
@@ -30,6 +39,7 @@ input.props = {
   value: String,
   options: Array,
   placeholder: String,
+  checked: Boolean,
 };
 
 input.styles = css`
@@ -37,6 +47,7 @@ input.styles = css`
     min-height: 30px;
     background: transparent;
     font: unset;
+    display: flex;
   }
   ::slotted(select),
   ::slotted([type]:not([type="checkbox"])) {

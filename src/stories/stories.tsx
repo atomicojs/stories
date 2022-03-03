@@ -4,6 +4,7 @@ import { Tabs } from "../tabs/tabs";
 import customElements from "../custom-elements";
 import { Story } from "./story";
 import { StoriesProps, Fields } from "./stories-props";
+import { Input } from "./stories-input";
 import tokens from "../tokens";
 export { Story } from "./story";
 
@@ -34,6 +35,17 @@ function stories({ props }: Props<typeof stories.props>) {
         {storiesList.map((story, i) => (
           <slot slot={"" + i} name={(story.slot = "" + i)}></slot>
         ))}
+        <label class="stories-option-switch" slot="options">
+          code
+          <Input
+            type="switch"
+            onchange={({ currentTarget }) => {
+              storiesList.forEach(
+                (story) => (story.showCode = currentTarget.checked)
+              );
+            }}
+          ></Input>
+        </label>
       </Tabs>
       <div class="stories-props">
         <div class="stories-content">
@@ -84,6 +96,12 @@ stories.styles = [
     .stories-header {
       position: relative;
       z-index: 1;
+    }
+    .stories-option-switch {
+      display: flex;
+      align-items: center;
+      padding: 0 var(--padding-x);
+      cursor: pointer;
     }
   `,
 ];

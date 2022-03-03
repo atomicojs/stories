@@ -72,10 +72,13 @@ folder.styles = [
   css`
     :host {
       --font-weight: 600;
+      --opacity: 1;
+      color: var(--color-accent);
     }
     :host(:not([active])) {
       --color-tab: transparent;
       --font-weight: 400;
+      color: var(--color-neutral);
     }
     .folder-row {
       width: 100%;
@@ -90,8 +93,8 @@ folder.styles = [
       color: unset;
       box-sizing: border-box;
       border-radius: var(--radius);
-      border-right: var(--tab-style) var(--color-tab);
       font-weight: var(--font-weight);
+      opacity: var(--opacity);
     }
     .folder-sub {
       padding-left: calc(1em * var(--folder-indent));

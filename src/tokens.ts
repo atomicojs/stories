@@ -9,19 +9,23 @@ export const tokensArticle = css`
     --title-h4: 18px;
     --blockquote-border: 2px solid currentColor;
     --blockquote-space: 0.25rem 0 0.25rem 1rem;
+    --color-accent: black;
+    --color-neutral: rgba(0, 0, 0, 0.75);
   }
 `;
 
 export default css`
   :host {
-    --radius: 0;
+    --radius: 0.5rem;
     --radius-rounded: 100px;
+
+    --shadow-embed: 0px 20px 60px -40px rgba(8, 45, 76, 0.1);
 
     --indent: 5%;
 
     --font-size-small: 0.875rem;
 
-    --bg-color: #eaf5f5;
+    --bg-color: #f6f9f9;
     --bg-color-story: #fff;
     --bg-color-code: #0a0024;
     --bg-color-action: #dde0e0;
@@ -31,6 +35,9 @@ export default css`
     --color-code: white;
     --color-action: currentColor;
     --color-tab: black;
+    --color-divide: rgba(0, 0, 0, 0.1);
+    --color-accent: black;
+    --color-neutral: rgba(0, 0, 0, 0.75);
 
     --opacity-tab-unselected: 0.5;
 
@@ -38,13 +45,14 @@ export default css`
     --action-min-space: 1rem;
 
     --scroll-width: 10px;
-    --content-max-width: 768px;
+    --content-max-width: 680px;
     --aside-max-width: 260px;
 
-    --divide: 1px solid #b9c5cc;
+    --divide-size: 1px;
+    --divide: var(--divide-size) solid var(--color-divide);
     --tab-style: 2px solid;
 
-    --padding-y: 2rem;
+    --padding-x: 1rem;
   }
 
   @media (max-width: 980px) {

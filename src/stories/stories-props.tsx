@@ -115,16 +115,12 @@ storiesProps.styles = css`
     padding: 10px 20px 10px 0px;
   }
   table td {
-    border-top: 1px solid #dbdbdb;
+    border-top: var(--divide);
   }
   h3 {
     margin: 0px;
   }
-  .stories-props-tag {
-    padding: 0px 0.5em;
-    background: #f1f1f9;
-    border-radius: 0.5em;
-  }
+
   .stories-props-tag span {
     padding: 0px 0.5em;
     opacity: 0.5;

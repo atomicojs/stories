@@ -16,9 +16,7 @@ const modules = Object.values(
 render(
   <host>
     <Doc modules={modules}>
-      <Header slot="header">
-        <img height="30px" src={logo} slot="brand" />
-      </Header>
+      <img height="30px" src={logo} slot="brand" />
     </Doc>
   </host>,
   document.body

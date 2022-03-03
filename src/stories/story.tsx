@@ -15,6 +15,7 @@ import tokens from "../tokens";
 import { Code } from "../code/code";
 import { Button } from "../button/button";
 import { Icon } from "../icon/icon";
+import { serialize } from "atomico/utils";
 
 function story({ values, render: propRender }: Props<typeof story.props>) {
   const host = useHost();
@@ -36,18 +37,12 @@ function story({ values, render: propRender }: Props<typeof story.props>) {
 
   return (
     <host shadowDom>
-      <div class="story-content">
+      <div class={serialize("story-content", showCode && "hidden")}>
         <slot ref={ref}></slot>
-      </div>
-      <div class="story-meta">
-        <div class="story-buttons">
-          <Button onclick={() => setShowCode(!showCode)}>
-            <Icon type="code"></Icon>
-          </Button>
-        </div>
       </div>
       {showCode && (
         <Code
+          disableRadiusTop
           class="story-code"
           type="html"
           value={host.current.innerHTML}
@@ -79,29 +74,16 @@ story.styles = [
       --_padding-y: calc(var(--padding-y) / 2);
     }
 
-    :host(:not([full-width])) .story-content {
-      padding: var(--padding-y) 0 0;
-      max-width: var(--content-max-width);
-      margin: auto;
-    }
-
     .story-content {
       min-height: 15vh;
       display: flex;
       align-items: center;
+      padding: var(--padding-x);
+      box-sizing: border-box;
     }
 
-    .story-meta {
-      max-width: var(--content-max-width);
-      margin: auto;
-      padding: var(--_padding-y) 0;
-      position: relative;
-    }
-    .story-buttons {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      transform: translateY(50%);
+    .hidden {
+      display: none;
     }
   `,
 ];

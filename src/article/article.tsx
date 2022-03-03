@@ -27,6 +27,10 @@ article.props = {
 };
 
 const cssLightDom = css`
+  :host {
+    color: var(--color-neutral);
+    line-height: 2rem;
+  }
   img,
   video,
   iframe {
@@ -54,6 +58,17 @@ const cssLightDom = css`
   blockquote {
     border-left: var(--blockquote-border);
     padding: var(--blockquote-space);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  blockquote,
+  strong,
+  code {
+    color: var(--color-accent);
   }
 `;
 

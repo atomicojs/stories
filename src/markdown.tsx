@@ -33,7 +33,10 @@ export function md(part, ...args) {
           <span slot="tab" value={index}>
             {label}
           </span>,
-          { ...code, props: { ...code.props, slot: index } }
+          {
+            ...code,
+            props: { ...code.props, slot: index, disableRadiusTop: true },
+          }
         );
 
         return children;
