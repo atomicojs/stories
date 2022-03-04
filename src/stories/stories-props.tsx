@@ -48,7 +48,7 @@ function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
                   <span class="stories-props-tag">
                     {field.type == "select" ? (
                       field.options.reduce(
-                        (current, value, index) => [
+                        (current: any, value: any, index: number) => [
                           ...current,
                           !!index && <span>|</span>,
                           <b>"{value}"</b>,
@@ -56,7 +56,7 @@ function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
                         []
                       )
                     ) : (
-                      <b>{types[field.type]}</b>
+                      <b>{!!types && types[field.type]}</b>
                     )}
                   </span>
                 </td>

@@ -22,7 +22,10 @@ function tabs(): Meta<DOMEvent<"ChangeTab">> {
                 "tabs-item",
                 value === child.getAttribute("value") && "tabs-item--active"
               )}
-              onclick={() => setValue(child.getAttribute("value"))}
+              onclick={() =>
+                child.hasAttribute("value") &&
+                setValue(child.getAttribute("value"))
+              }
             >
               <slot name={(child.slot = "tab-" + index)}></slot>
             </button>
