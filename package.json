@@ -32,5 +32,12 @@
     "@uppercod/vite-meta-url-load-css": "latest",
     "typescript": "^4.6.2",
     "vite": "latest"
-  }
+  },
+  "author": "UpperCod",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/atomicojs/stories.git"
+  },
+  "homepage": "https://github.com/atomicojs/stories"
 }
