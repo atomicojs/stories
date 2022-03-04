@@ -1,4 +1,4 @@
-import { Props, c, css, useProp } from "atomico";
+import { Props, c, css, useProp, Meta, DOMEvent } from "atomico";
 import { formToObject } from "@uppercod/form-tools";
 import customElements from "../custom-elements";
 import { Input } from "./stories-input";
@@ -22,7 +22,10 @@ export interface Fields {
   [field: string]: FieldGeneric | FieldSelect;
 }
 
-function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
+function storiesProps({
+  props,
+  types,
+}: Props<typeof storiesProps.props>): Meta<DOMEvent<"StoriesChangeValues">> {
   const [values, setValues] = useProp<any>("values");
   return (
     <host shadowDom>

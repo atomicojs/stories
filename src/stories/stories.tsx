@@ -10,7 +10,7 @@ export { Story } from "./story";
 
 function stories({ props }: Props<typeof stories.props>) {
   const ref = useRef();
-  const [values, setValues] = useProp("values");
+  const [values, setValues] = useProp<any>("values");
   const [value, setValue] = useProp<string>("value");
   const storiesList = useProxySlot(ref).filter(
     (el) => el instanceof Story
@@ -53,7 +53,9 @@ function stories({ props }: Props<typeof stories.props>) {
         <div class="stories-content">
           <StoriesProps
             props={props}
-            onStoriesChangeValues={({ target }) => setValues(target.values)}
+            onStoriesChangeValues={({ currentTarget }) =>
+              setValues(currentTarget.values)
+            }
           ></StoriesProps>
         </div>
       </div>
