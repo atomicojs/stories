@@ -27,6 +27,7 @@
     "scrollable-component": "^1.2.0"
   },
   "devDependencies": {
+    "@atomico/exports": "^0.22.2",
     "@atomico/scaffold": "^0.2.0",
     "@uppercod/vite-meta-url": "latest",
     "@uppercod/vite-meta-url-load-css": "latest",
