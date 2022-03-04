@@ -21,7 +21,7 @@ export interface ModuloPage {
 }
 
 function doc({ modules }: Props<typeof doc.props>) {
-  const [, setShowAside] = useProp("showAside");
+  const [, setShowAside] = useProp<boolean>("showAside");
 
   const entries = modules ? Object.entries(modules) : [];
 
@@ -30,7 +30,7 @@ function doc({ modules }: Props<typeof doc.props>) {
   const groups = entries.reduce((groups, [path, { meta }]) => {
     const paths = path.split("/").filter((value) => value);
     //@ts-ignore
-    const last = paths.reduce((group: { items?: any }, title) => {
+    const last: any = paths.reduce((group: { items?: any }, title) => {
       group.items = group.items || {};
       group.items[title] = group.items[title] || { title, items: {} };
       return group.items[title];
@@ -71,9 +71,9 @@ function doc({ modules }: Props<typeof doc.props>) {
   ));
 
   useEffect(() => {
-    if (!modules[viewId]) return;
+    if (!modules) return;
     document.title = modules[viewId]?.meta?.title;
-  }, [modules[viewId] && modules[viewId]?.meta?.title]);
+  }, [modules && modules[viewId]?.meta?.title]);
 
   return (
     <host shadowDom>
