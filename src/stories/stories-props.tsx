@@ -41,7 +41,7 @@ function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
             <th>Value</th>
           </tr>
           {props &&
-            Object.entries(props).map(([name, field]) => (
+            Object.entries(props).map(([name, field]: any[]) => (
               <tr>
                 <td>{name}</td>
                 <td>

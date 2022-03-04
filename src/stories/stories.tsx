@@ -24,7 +24,9 @@ function stories({ props }: Props<typeof stories.props>) {
 
       <Tabs
         value={value}
-        onChangeTab={({ currentTarget }) => setValue(currentTarget.value)}
+        onChangeTab={({ currentTarget }) =>
+          currentTarget.value && setValue(currentTarget.value)
+        }
         class="stories-tabs"
       >
         {storiesList.map(({ label }, index) => (

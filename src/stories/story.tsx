@@ -13,8 +13,6 @@ import { useSlot } from "@atomico/hooks/use-slot";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 import { Code } from "../code/code";
-import { Button } from "../button/button";
-import { Icon } from "../icon/icon";
 import { serialize } from "atomico/utils";
 
 function story({ values, render: propRender }: Props<typeof story.props>) {
