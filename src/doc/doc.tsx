@@ -23,7 +23,7 @@ export interface ModuloPage {
 function doc({ modules }: Props<typeof doc.props>) {
   const [, setShowAside] = useProp("showAside");
 
-  const entries = Object.entries(modules);
+  const entries = modules ? Object.entries(modules) : [];
 
   const host = useHost();
 
