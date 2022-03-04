@@ -56,6 +56,7 @@ function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
                         []
                       )
                     ) : (
+                      //@ts-ignore
                       <b>{!!types && types[field.type]}</b>
                     )}
                   </span>
