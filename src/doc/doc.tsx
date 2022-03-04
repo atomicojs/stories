@@ -29,6 +29,7 @@ function doc({ modules }: Props<typeof doc.props>) {
 
   const groups = entries.reduce((groups, [path, { meta }]) => {
     const paths = path.split("/").filter((value) => value);
+    //@ts-ignore
     const last = paths.reduce((group: { items?: any }, title) => {
       group.items = group.items || {};
       group.items[title] = group.items[title] || { title, items: {} };
@@ -70,8 +71,9 @@ function doc({ modules }: Props<typeof doc.props>) {
   ));
 
   useEffect(() => {
+    if (!modules[viewId]) return;
     document.title = modules[viewId]?.meta?.title;
-  }, [modules[viewId]?.meta?.title]);
+  }, [modules[viewId] && modules[viewId]?.meta?.title]);
 
   return (
     <host shadowDom>
