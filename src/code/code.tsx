@@ -15,6 +15,8 @@ function code({ value, type }: Props<typeof code>) {
       const cndComponent = cdn + "/components/prism-";
       const Prism = await import(cdn);
 
+      if (!type) return "";
+
       ts.includes(type) && (await import(cndComponent + "typescript"));
 
       jsx.includes(type) && (await import(cndComponent + "jsx"));
