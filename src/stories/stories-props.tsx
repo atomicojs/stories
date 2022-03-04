@@ -40,37 +40,38 @@ function storiesProps({ props, types }: Props<typeof storiesProps.props>) {
             <th>Description</th>
             <th>Value</th>
           </tr>
-          {Object.entries(props).map(([name, field]) => (
-            <tr>
-              <td>{name}</td>
-              <td>
-                <span class="stories-props-tag">
-                  {field.type == "select" ? (
-                    field.options.reduce(
-                      (current, value, index) => [
-                        ...current,
-                        !!index && <span>|</span>,
-                        <b>"{value}"</b>,
-                      ],
-                      []
-                    )
-                  ) : (
-                    <b>{types[field.type]}</b>
+          {props &&
+            Object.entries(props).map(([name, field]) => (
+              <tr>
+                <td>{name}</td>
+                <td>
+                  <span class="stories-props-tag">
+                    {field.type == "select" ? (
+                      field.options.reduce(
+                        (current, value, index) => [
+                          ...current,
+                          !!index && <span>|</span>,
+                          <b>"{value}"</b>,
+                        ],
+                        []
+                      )
+                    ) : (
+                      <b>{types[field.type]}</b>
+                    )}
+                  </span>
+                </td>
+                <td>{field.description}</td>
+                <td>
+                  {field.input || (
+                    <Input
+                      name={name}
+                      type={field.type}
+                      options={field.type === "select" ? field.options : null}
+                    ></Input>
                   )}
-                </span>
-              </td>
-              <td>{field.description}</td>
-              <td>
-                {field.input || (
-                  <Input
-                    name={name}
-                    type={field.type}
-                    options={field.type === "select" ? field.options : null}
-                  ></Input>
-                )}
-              </td>
-            </tr>
-          ))}
+                </td>
+              </tr>
+            ))}
         </table>
       </form>
     </host>

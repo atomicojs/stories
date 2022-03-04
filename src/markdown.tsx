@@ -4,7 +4,7 @@ import { parseCssParams } from "@uppercod/parse/parse-css-params";
 
 export function md(part: TemplateStringsArray, ...args: any[]) {
   const nodes = markdown.call(null, part, ...args);
-  const groups = {};
+  const groups: { [index: string]: any } = {};
   const children = nodes.reduce((children: any, node: any) => {
     if (node.type === "p") {
       const [first] = node.children.flat(1);
@@ -17,7 +17,7 @@ export function md(part: TemplateStringsArray, ...args: any[]) {
     } else if (node.type === "pre") {
       const [[[type], ...meta]] = parseCssParams(node.props.type) as any;
 
-      const tab = meta.find(([fn]) => fn == "tab");
+      const tab = meta.find(([fn]: any) => fn == "tab");
 
       const code = (
         <Code type={type} value={node.children[0].children.join("\n")}></Code>

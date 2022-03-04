@@ -8,4 +8,3 @@ export { Divide } from "./divide/divide";
 export { Scroll } from "./scroll/scroll";
 export { Folder } from "./folder/folder";
 export { Header } from "./header/header";
-export { Menu } from "./menu/menu";
