@@ -2,10 +2,10 @@ import markdown from "@atomico/markdown";
 import { Article, Code, Tabs, Stories, Divide } from "./components";
 import { parseCssParams } from "@uppercod/parse/parse-css-params";
 
-export function md(part, ...args) {
+export function md(part: TemplateStringsArray, ...args: any[]) {
   const nodes = markdown.call(null, part, ...args);
   const groups = {};
-  const children = nodes.reduce((children, node) => {
+  const children = nodes.reduce((children: any, node: any) => {
     if (node.type === "p") {
       const [first] = node.children.flat(1);
       if (first.type === Stories) {

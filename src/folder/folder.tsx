@@ -13,7 +13,7 @@ interface Directory {
   };
 }
 
-function folder({ directory, slug, indent }: Props<typeof folder>) {
+function folder({ directory, slug, indent = 0 }: Props<typeof folder>) {
   const { title = slug, items, icon, path } = directory || {};
 
   const match = useRouteMatch();
