@@ -5,6 +5,7 @@ import { useChannel } from "@atomico/hooks/use-channel";
 import customElements from "../custom-elements";
 import { Scroll } from "../scroll/scroll";
 import { Folder } from "../folder/folder";
+import { Button } from "../button/button";
 
 import tokens from "../tokens";
 
@@ -20,17 +21,15 @@ export interface ModuloPage {
 }
 
 function doc({ modules }: Props<typeof doc.props>) {
-  const [hideAside, setHideAside] = useProp("hideAside");
+  const [, setShowAside] = useProp("showAside");
 
   const entries = Object.entries(modules);
 
   const host = useHost();
 
-  const [, setDocMenu] = useChannel("DocMenu");
-
   const groups = entries.reduce((groups, [path, { meta }]) => {
     const paths = path.split("/").filter((value) => value);
-    const last = paths.reduce((group, title) => {
+    const last = paths.reduce((group: { items?: any }, title) => {
       group.items = group.items || {};
       group.items[title] = group.items[title] || { title, items: {} };
       return group.items[title];
@@ -76,7 +75,7 @@ function doc({ modules }: Props<typeof doc.props>) {
 
   return (
     <host shadowDom>
-      <div class="aside aside-left">
+      <div class="aside aside-left" onclick={() => setShowAside(false)}>
         <div className="aside-inner">
           <div class="aside-brand">
             <slot name="brand"></slot>
@@ -93,6 +92,18 @@ function doc({ modules }: Props<typeof doc.props>) {
         </div>
       </div>
       <div class="aside aside-right"></div>
+      <Button
+        class="toggle-menu"
+        onclick={() => setShowAside((value) => !value)}
+      >
+        <svg width="16" height="12" viewBox="0 0 16 12">
+          <path
+            d="M-4597-323a1,1,0,0,1-1-1,1,1,0,0,1,1-1h14a1,1,0,0,1,1,1,1,1,0,0,1-1,1Zm0-5a1,1,0,0,1-1-1,1,1,0,0,1,1-1h14a1,1,0,0,1,1,1,1,1,0,0,1-1,1Zm0-5a1,1,0,0,1-1-1,1,1,0,0,1,1-1h14a1,1,0,0,1,1,1,1,1,0,0,1-1,1Z"
+            transform="translate(4598 335)"
+            fill="white"
+          />
+        </svg>
+      </Button>
     </host>
   );
 }
@@ -102,7 +113,7 @@ doc.props = {
     type: Object,
     value: (): ModuloPage => ({}),
   },
-  hideAside: {
+  showAside: {
     type: Boolean,
     reflect: true,
   },
@@ -131,6 +142,7 @@ doc.styles = [
       overflow: hidden auto;
       background: var(--bg-color);
       align-items: flex-start;
+      box-sizing: border-box;
     }
 
     .aside {
@@ -140,6 +152,7 @@ doc.styles = [
       display: flex;
       justify-content: flex-end;
       font-size: var(--font-size-small);
+      max-height: 100vh;
     }
 
     .aside-inner {
@@ -178,15 +191,53 @@ doc.styles = [
       height: 100%;
     }
 
+    .toggle-menu {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      --bg-color: black;
+    }
+
     :host([transitions]) {
       --transition: 0.75s ease all;
     }
 
     @media (max-width: 680px) {
       :host {
-        grid-template:
-          "header" 60px
-          "content" auto / 1fr;
+        grid-template: "content" auto / 100%;
+        grid-gap: 0;
+      }
+      .content {
+        padding: 0px 10%;
+        box-sizing: border-box;
+      }
+      .aside-right {
+        display: none;
+      }
+      .aside-left {
+        position: fixed;
+        top: 0px;
+        right: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 100;
+        width: 100%;
+        display: grid;
+        justify-content: flex-start;
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transform: scale(1.1);
+        min-height: 100%;
+        max-height: auto;
+        transition: right 0s 1s, opacity 1s ease, transform 1s ease;
+        overflow: auto;
+        padding: 0 10%;
+        box-sizing: border-box;
+      }
+      :host([show-aside]) .aside-left {
+        right: 0;
+        opacity: 1;
+        transform: scale(1);
+        transition: right 0s 0s, opacity 0.5s ease, transform 0.5s ease;
       }
     }
   `,

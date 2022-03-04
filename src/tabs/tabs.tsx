@@ -15,7 +15,7 @@ function tabs(): Meta<DOMEvent<"ChangeTab">> {
     <host shadowDom>
       <slot name="tab" ref={ref}></slot>
       <div class="tabs">
-        <div className="tabs-items">
+        <div class="tabs-items">
           {children.map((child, index) => (
             <button
               class={serialize(
@@ -62,24 +62,28 @@ tabs.styles = [
     }
     .tabs {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
+      display: grid;
       border-bottom: var(--divide);
       font-size: var(--font-size-small);
+      grid-template-columns: 1fr auto;
     }
     .tabs-items {
       position: relative;
       z-index: 1;
+      display: flex;
+      overflow: auto hidden;
+      height: var(--action-min-size);
+      margin-bottom: calc(var(--divide-size) * -1);
     }
     .tabs-item {
+      height: 100%;
       background: transparent;
       border: none;
-      height: var(--action-min-size);
       padding: 0px var(--padding-x);
       font: unset;
-      margin-bottom: calc(var(--divide-size) * -1);
       border-bottom: var(--divide-size) solid transparent;
       cursor: pointer;
+      white-space: nowrap;
     }
     .tabs-item--active.tabs-item {
       border-bottom: var(--divide-size) solid var(--color-tab);

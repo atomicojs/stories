@@ -58,6 +58,7 @@ const cssLightDom = css`
   blockquote {
     border-left: var(--blockquote-border);
     padding: var(--blockquote-space);
+    margin: 0;
   }
   h1,
   h2,
@@ -82,12 +83,8 @@ article.styles = [
       grid-gap: 20px;
       padding: 50px 0px;
     }
-    ::slotted(*:not([full-width])) {
-      margin: 0px;
-      width: 100%;
-      box-sizing: border-box;
-      max-width: var(--content-max-width);
-      margin: auto;
+    ::slotted(*) {
+      max-width: 100%;
     }
     ::slotted(p) {
       line-height: 2em;

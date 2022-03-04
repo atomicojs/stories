@@ -3,6 +3,7 @@ import { usePromise } from "@atomico/hooks/use-promise";
 import customElements from "../custom-elements";
 import tokens from "../tokens";
 import { themeA11yDark } from "./theme";
+import { Scroll } from "../scroll/scroll";
 
 const ts = ["typescript", "ts"];
 const jsx = ["jsx", "tsx"];
@@ -48,13 +49,15 @@ function code({ value, type }: Props<typeof code>) {
 
   return (
     <host shadowDom>
-      <pre class="code">
-        {state === "pending" || !html ? (
-          <code textContent={value}></code>
-        ) : (
-          <code innerHTML={html}></code>
-        )}
-      </pre>
+      <Scroll>
+        <pre class="code">
+          {state === "pending" || !html ? (
+            <code textContent={value}></code>
+          ) : (
+            <code innerHTML={html}></code>
+          )}
+        </pre>
+      </Scroll>
     </host>
   );
 }
@@ -87,15 +90,17 @@ code.styles = [
     }
     .code {
       width: 100%;
-      max-width: var(--content-max-width);
       margin: auto;
-      overflow: auto;
       padding: 1.5rem var(--indent);
+      box-sizing: border-box;
     }
     code,
     pre {
       font-size: unset;
       font-family: unset;
+    }
+    code {
+      white-space: unset;
     }
     :host([disable-radius-top]) {
       border-radius: 0 0 var(--radius) var(--radius);

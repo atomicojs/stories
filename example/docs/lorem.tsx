@@ -30,6 +30,40 @@ Content...
 \`;
 ~~~
 
+~~~html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atomico - Started</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        overflow: hidden auto;
+      }
+    </style>
+    <script async type="module" src="./example/load.tsx"></script>
+  </head>
+  <body></body>
+</html>
+
+~~~
+
 
 
 Con ~@atomico/stories~ podras documentar  tus webcomponents y crear storias reactivas, ejemplo:

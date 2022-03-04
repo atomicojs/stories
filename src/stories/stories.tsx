@@ -71,11 +71,6 @@ stories.props = {
   values: {
     type: Object,
   },
-  fullWidth: {
-    type: Boolean,
-    reflect: true,
-    value: (): boolean => true,
-  },
 };
 
 stories.styles = [
@@ -86,7 +81,6 @@ stories.styles = [
       padding: 0px !important;
     }
     .stories-content {
-      max-width: var(--content-max-width);
       margin: auto;
     }
     .stories-props {
