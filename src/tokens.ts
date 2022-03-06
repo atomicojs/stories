@@ -14,6 +14,16 @@ export const tokensArticle = css`
   }
 `;
 
+export const tokensInput = css`
+  :host {
+    --color-active: black;
+    --color-inactive: rgba(0, 0, 0, 0.5);
+    --border-size: 1px;
+    --min-size: 2rem;
+    --transition: 0.3s ease all;
+  }
+`;
+
 export default css`
   :host {
     --radius: 0.5rem;
@@ -39,10 +49,15 @@ export default css`
     --color-accent: black;
     --color-neutral: rgba(0, 0, 0, 0.75);
 
+    --color-input-active: black;
+    --color-input-inactive: black;
+
     --opacity-tab-unselected: 0.5;
 
     --action-min-size: 2.5rem;
     --action-min-space: 1rem;
+
+    --input-min-size: 2rem;
 
     --scroll-width: 10px;
     --content-max-width: 680px;
@@ -53,6 +68,8 @@ export default css`
     --tab-style: 2px solid;
 
     --padding-x: 1rem;
+
+    --transition-1: 0.3s ease all;
   }
 
   @media (max-width: 980px) {

@@ -1,62 +1,80 @@
-import { Props, c, css, useProp, useEffect, useHost } from "atomico";
+import { Props, c, css, useProp, useEffect, useHost, useMemo } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
 import { useRouter, useRedirect } from "@atomico/hooks/use-router";
-import { useChannel } from "@atomico/hooks/use-channel";
 import customElements from "../custom-elements";
 import { Scroll } from "../scroll/scroll";
-import { Folder } from "../folder/folder";
+import { Folder, Directory } from "../folder/folder";
 import { Button } from "../button/button";
 
 import tokens from "../tokens";
 
-export interface ModuloPage {
-  [path: string]: {
-    meta: {
-      title: any;
-      icon: any;
-      path: string;
-    };
-    default: any;
+export interface Page {
+  meta: {
+    title: any;
+    icon: any;
+    path: string;
   };
+  default: any;
 }
+
+export interface ModuloPage {
+  [path: string]: Page;
+}
+
+const toFolder = (path: string) =>
+  path
+    .split("/")
+    .map((value: string) => value.trim())
+    .filter((value: string) => value);
+
+const toSlug = (folder: string) =>
+  folder
+    .trim()
+    .toLowerCase()
+    .replace(/([^\w/])/g, "-");
+
+const moduleToDirectory = (modules: [string, Page][]) => {
+  const group: Directory = {};
+
+  return modules.reduce((group, [path, { meta }]) => {
+    const paths = toFolder(path);
+
+    const [nextPath, items] = paths.reduce<[string, Directory]>(
+      ([path, group], title) => {
+        const slug = toSlug(title);
+        path = path + "/" + slug;
+        group.items = group.items || {};
+        group.items[slug] = group.items[slug] || {
+          title,
+          items: {},
+        };
+        return [path, group.items[slug]];
+      },
+      ["", group]
+    );
+
+    Object.assign(items, meta);
+
+    items.path = nextPath || "/";
+
+    return group;
+  }, group);
+};
 
 function doc({ modules }: Props<typeof doc.props>) {
   const [, setShowAside] = useProp<boolean>("showAside");
 
   const entries = modules ? Object.entries(modules) : [];
 
+  const groups = useMemo(() => moduleToDirectory(entries), [modules]);
+
   const host = useHost();
-
-  const groups = entries.reduce((groups, [path, { meta }]) => {
-    const paths = path.split("/").filter((value) => value);
-    //@ts-ignore
-    const last: any = paths.reduce((group: { items?: any }, title) => {
-      group.items = group.items || {};
-      group.items[title] = group.items[title] || { title, items: {} };
-      return group.items[title];
-    }, groups);
-
-    Object.assign(last, meta);
-
-    last.path =
-      "/" +
-      paths
-        .map((path) =>
-          path
-            .trim()
-            .toLowerCase()
-            .replace(/([^\w/])/g, "-")
-        )
-        .join("/");
-
-    return groups;
-  }, {});
 
   const [view, viewId] = useRouter(
     entries.reduce(
       (router, [path, meta]) => ({
         ...router,
-        [path]: () => meta.default,
+        [toFolder(path).map(toSlug).join("/") || "/"]: () => meta.default,
       }),
       {}
     )
@@ -66,7 +84,9 @@ function doc({ modules }: Props<typeof doc.props>) {
 
   useRender(() => (
     <host>
-      <article slot="article">{view}</article>
+      <article slot="article" key={view}>
+        {view}
+      </article>
     </host>
   ));
 

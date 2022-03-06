@@ -72,11 +72,11 @@ ${(
   <Stories
     props={{
       disabled: {
-        type: "switch",
+        type: "toggle",
         description: "my prop...",
       },
       size: {
-        type: "select",
+        type: "radio-groups",
         description: "my prop...",
         options: ["small", "large"],
       },

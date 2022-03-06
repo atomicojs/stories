@@ -1,7 +1,7 @@
 import { Props, c, css, useProp, Meta, DOMEvent } from "atomico";
 import { formToObject } from "@uppercod/form-tools";
 import customElements from "../custom-elements";
-import { Input } from "./stories-input";
+import { Toggle, Radio, Input } from "../inputs/inputs";
 
 interface FieldBase {
   type: string;
@@ -10,16 +10,20 @@ interface FieldBase {
 }
 
 interface FieldGeneric extends FieldBase {
-  type: "switch" | "text" | "number";
+  type: "toggle" | "text" | "number";
 }
 
-interface FieldSelect extends FieldBase {
-  type: "select";
-  options: string[];
+interface FieldGroups extends FieldBase {
+  type: "radio-groups";
+  options:
+    | string[]
+    | {
+        [value: string]: string;
+      };
 }
 
 export interface Fields {
-  [field: string]: FieldGeneric | FieldSelect;
+  [field: string]: FieldGeneric | FieldGroups;
 }
 
 function storiesProps({
@@ -33,6 +37,7 @@ function storiesProps({
       <form
         class="stories-props-scroll"
         onchange={({ currentTarget }) => {
+          console.log(formToObject(values)(currentTarget));
           setValues(formToObject(values)(currentTarget));
         }}
       >
@@ -44,35 +49,49 @@ function storiesProps({
             <th>Value</th>
           </tr>
           {props &&
-            Object.entries(props).map(([name, field]: any[]) => (
+            Object.entries(props).map(([name, field]) => (
               <tr>
                 <td>{name}</td>
                 <td>
                   <span class="stories-props-tag">
-                    {field.type == "select" ? (
-                      field.options.reduce(
-                        (current: any, value: any, index: number) => [
-                          ...current,
-                          !!index && <span>|</span>,
-                          <b>"{value}"</b>,
-                        ],
-                        []
+                    {field.type == "radio-groups" ? (
+                      (Array.isArray(field.options)
+                        ? field.options
+                        : Object.values(field.options)
+                      ).map((value, i) =>
+                        i ? [" | ", <b>"{value}"</b>] : <b>"{value}"</b>
                       )
                     ) : (
-                      //@ts-ignore
                       <b>{!!types && types[field.type]}</b>
                     )}
                   </span>
                 </td>
                 <td>{field.description}</td>
                 <td>
-                  {field.input || (
-                    <Input
-                      name={name}
-                      type={field.type}
-                      options={field.type === "select" ? field.options : null}
-                    ></Input>
-                  )}
+                  {field.input ||
+                    (field.type === "text" || field.type === "number" ? (
+                      <Input name={name} type={field.type}></Input>
+                    ) : field.type === "radio-groups" ? (
+                      Array.isArray(field.options) ? (
+                        field.options.map((value) => (
+                          <Radio
+                            name={name}
+                            value={value}
+                            label={value}
+                          ></Radio>
+                        ))
+                      ) : (
+                        Object.entries(field.options).map(([value, label]) => (
+                          <Radio
+                            name={name}
+                            value={value}
+                            label={label}
+                          ></Radio>
+                        ))
+                      )
+                    ) : field.type === "toggle" ? (
+                      <Toggle name={name}></Toggle>
+                    ) : null)}
                 </td>
               </tr>
             ))}
@@ -95,10 +114,10 @@ storiesProps.props = {
   },
   types: {
     type: Object,
-    value: () => ({
-      switch: "boolean",
-      checked: "boolean",
-      select: "string",
+    value: (): { [type: string]: string } => ({
+      "radio-groups": "string",
+      number: "number",
+      toggle: "boolean",
       text: "string",
     }),
   },

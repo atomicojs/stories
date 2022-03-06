@@ -4,7 +4,8 @@ import { Tabs } from "../tabs/tabs";
 import customElements from "../custom-elements";
 import { Story } from "./story";
 import { StoriesProps, Fields } from "./stories-props";
-import { Input } from "./stories-input";
+// import { Input } from "./stories-input";
+import { Toggle } from "../inputs/inputs";
 import tokens from "../tokens";
 export { Story } from "./story";
 
@@ -38,27 +39,30 @@ function stories({ props }: Props<typeof stories.props>) {
           <slot slot={"" + i} name={(story.slot = "" + i)}></slot>
         ))}
         <label class="stories-option-switch" slot="options">
-          code
-          <Input
-            type="switch"
+          <Toggle
             onchange={({ currentTarget }) => {
+              console.log(currentTarget);
               storiesList.forEach(
                 (story) => (story.showCode = currentTarget.checked)
               );
             }}
-          ></Input>
+            label="Code"
+            reverse
+          ></Toggle>
         </label>
       </Tabs>
-      <div class="stories-props">
-        <div class="stories-content">
-          <StoriesProps
-            props={props}
-            onStoriesChangeValues={({ currentTarget }) =>
-              setValues(currentTarget.values)
-            }
-          ></StoriesProps>
+      {props && !!Object.keys(props).length && (
+        <div class="stories-props">
+          <div class="stories-content">
+            <StoriesProps
+              props={props}
+              onStoriesChangeValues={({ currentTarget }) =>
+                setValues(currentTarget.values)
+              }
+            ></StoriesProps>
+          </div>
         </div>
-      </div>
+      )}
     </host>
   );
 }

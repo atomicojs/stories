@@ -4,7 +4,7 @@ import { IconFolder, IconSlash } from "./icons";
 import { useRouteMatch } from "@atomico/hooks/use-router";
 import tokens from "../tokens";
 
-interface Directory {
+export interface Directory {
   title?: string;
   icon?: any;
   path?: string;

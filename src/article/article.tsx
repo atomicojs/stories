@@ -70,6 +70,7 @@ const cssLightDom = css`
   strong,
   code {
     color: var(--color-accent);
+    margin: 0.5rem 0px;
   }
 `;
 
