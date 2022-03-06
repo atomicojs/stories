@@ -11,6 +11,7 @@ export const tokensArticle = css`
     --blockquote-space: 0.25rem 0 0.25rem 1rem;
     --color-accent: black;
     --color-neutral: rgba(0, 0, 0, 0.75);
+    --color-link: #005aff;
   }
 `;
 

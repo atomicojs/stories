@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@atomico/hooks": "^3.32.0",
-    "@atomico/markdown": "^1.0.1",
+    "@uppercod/markdown-inline": "^0.9.0",
     "@uppercod/parse": "^0.4.2",
     "atomico": "^1.46.3",
     "atomico-use-head": "^1.1.0",

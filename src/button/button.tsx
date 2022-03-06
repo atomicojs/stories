@@ -1,5 +1,5 @@
 import { useSlot } from "@atomico/hooks/use-slot";
-import { Props, c, css, useRef } from "atomico";
+import { c, css, useRef } from "atomico";
 import { serialize } from "atomico/utils";
 import customElements from "../custom-elements";
 import tokens from "../tokens";

@@ -72,6 +72,16 @@ const cssLightDom = css`
     color: var(--color-accent);
     margin: 0.5rem 0px;
   }
+
+  a {
+    color: var(--color-link);
+  }
+
+  doc-inline-code {
+    color: var(--color-accent);
+    font-family: monospace;
+    font-weight: bold;
+  }
 `;
 
 article.styles = [

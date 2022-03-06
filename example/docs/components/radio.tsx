@@ -5,7 +5,7 @@ export const meta = {
 };
 
 export default md`
-# Input
+# Input radio
 
 ${(
   <Stories>
@@ -22,4 +22,6 @@ ${(
     </Story>
   </Stories>
 )}
+
+Usado por ~@atomico/stories~ para el componente [Stories](../stories)
 `;
