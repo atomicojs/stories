@@ -37,7 +37,6 @@ function storiesProps({
       <form
         class="stories-props-scroll"
         onchange={({ currentTarget }) => {
-          console.log(formToObject(values)(currentTarget));
           setValues(formToObject(values)(currentTarget));
         }}
       >
@@ -138,6 +137,11 @@ storiesProps.styles = css`
   table td {
     padding: 10px 20px 10px 0px;
   }
+
+  table tr {
+    vertical-align: baseline;
+  }
+
   table td {
     border-top: var(--divide);
   }
