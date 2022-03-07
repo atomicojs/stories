@@ -123,6 +123,7 @@ storiesProps.styles = css`
     width: 100%;
     font-size: var(--font-size-table);
     border-spacing: 0;
+    line-height: 1.2;
   }
   table th,
   table td {
