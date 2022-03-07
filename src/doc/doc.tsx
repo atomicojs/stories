@@ -10,8 +10,8 @@ import tokens from "../tokens";
 
 export interface Page {
   meta: {
-    title: any;
-    icon: any;
+    title?: any;
+    icon?: any;
     path: string;
   };
   default: any;
@@ -61,12 +61,27 @@ const moduleToDirectory = (modules: [string, Page][]) => {
   }, group);
 };
 
+const order = ([, a]: [string, Page], [, b]: [string, Page]): number => {
+  if (a.meta.path > b.meta.path) {
+    return -1;
+  }
+
+  if (a.meta.path < b.meta.path) {
+    return 1;
+  }
+
+  return 0;
+};
+
 function doc({ modules }: Props<typeof doc.props>) {
   const [, setShowAside] = useProp<boolean>("showAside");
 
   const entries = modules ? Object.entries(modules) : [];
 
-  const groups = useMemo(() => moduleToDirectory(entries), [modules]);
+  const groups = useMemo(
+    () => moduleToDirectory(entries.sort(order)),
+    [modules]
+  );
 
   const host = useHost();
 
@@ -90,10 +105,10 @@ function doc({ modules }: Props<typeof doc.props>) {
     </host>
   ));
 
-  useEffect(() => {
-    if (!modules) return;
-    document.title = modules[viewId]?.meta?.title;
-  }, [modules && modules[viewId]?.meta?.title]);
+  // useEffect(() => {
+  //   if (!modules) return;
+  //   document.title = modules[viewId]?.meta?.title;
+  // }, [modules && modules[viewId]?.meta?.title]);
 
   return (
     <host shadowDom>
@@ -183,7 +198,7 @@ doc.styles = [
       padding: 2rem 0px;
       display: grid;
       grid-gap: 2rem;
-      justify-content: center;
+      place-content: center;
     }
 
     .aside-scroll {

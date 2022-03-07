@@ -23,5 +23,4 @@ ${(
   </Stories>
 )}
 
-Usado por ~@atomico/stories~ para el componente [Stories](../stories)
 `;

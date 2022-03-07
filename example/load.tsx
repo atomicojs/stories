@@ -1,5 +1,5 @@
 import { render } from "atomico";
-import { Doc, ModuloPage, Header, Menu } from "../src/components";
+import { Doc, ModuloPage } from "../src/components";
 import logo from "./logo.svg";
 
 const modules = Object.values(

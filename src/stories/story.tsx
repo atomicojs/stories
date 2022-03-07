@@ -15,7 +15,11 @@ import tokens from "../tokens";
 import { Code } from "../code/code";
 import { serialize } from "atomico/utils";
 
-function story({ values, render: propRender }: Props<typeof story.props>) {
+function story({
+  values,
+  render: propRender,
+  content,
+}: Props<typeof story.props>) {
   const host = useHost();
   const ref = useRef();
   const [showCode, setShowCode] = useProp<boolean>("showCode");
@@ -35,7 +39,10 @@ function story({ values, render: propRender }: Props<typeof story.props>) {
 
   return (
     <host shadowDom>
-      <div class={serialize("story-content", showCode && "hidden")}>
+      <div
+        class={serialize("story-content", showCode && "hidden")}
+        style={content ? `--content:${content};` : ""}
+      >
         <slot ref={ref}></slot>
       </div>
       {showCode && (
@@ -62,6 +69,7 @@ story.props = {
     type: Boolean,
     reflect: true,
   },
+  content: String,
 };
 
 story.styles = [
@@ -69,7 +77,8 @@ story.styles = [
   css`
     :host {
       display: block;
-      --_padding-y: calc(var(--padding-y) / 2);
+      --display: flex;
+      --content: center start;
     }
 
     .story-content {
@@ -78,6 +87,7 @@ story.styles = [
       align-items: center;
       padding: var(--padding-x);
       box-sizing: border-box;
+      place-content: var(--content);
     }
 
     .hidden {

@@ -22,7 +22,7 @@
     "@atomico/hooks": "^3.32.0",
     "@uppercod/markdown-inline": "^0.9.0",
     "@uppercod/parse": "^0.4.2",
-    "atomico": "^1.46.3",
+    "atomico": "^1.47.0",
     "atomico-use-head": "^1.1.0",
     "scrollable-component": "^1.2.0"
   },

@@ -82,6 +82,21 @@ const cssLightDom = css`
     font-family: monospace;
     font-weight: bold;
   }
+
+  h1 doc-inline-code,
+  h2 doc-inline-code,
+  h3 doc-inline-code,
+  h4 doc-inline-code,
+  h5 doc-inline-code,
+  h6 doc-inline-code {
+    font-size: 0.9em;
+    color: var(--color-neutral);
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0px;
+  }
 `;
 
 article.styles = [
@@ -96,13 +111,6 @@ article.styles = [
     }
     ::slotted(*) {
       max-width: 100%;
-    }
-    ::slotted(p) {
-      line-height: 2em;
-    }
-    ::slotted([columns]) {
-      columns: 2 280px;
-      column-gap: 40px;
     }
   `,
 ];

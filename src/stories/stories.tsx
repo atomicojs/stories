@@ -4,7 +4,6 @@ import { Tabs } from "../tabs/tabs";
 import customElements from "../custom-elements";
 import { Story } from "./story";
 import { StoriesProps, Fields } from "./stories-props";
-// import { Input } from "./stories-input";
 import { Toggle } from "../inputs/inputs";
 import tokens from "../tokens";
 export { Story } from "./story";
