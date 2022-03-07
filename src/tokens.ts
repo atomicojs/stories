@@ -25,6 +25,9 @@ export const tokensInput = css`
   }
 `;
 
+/**
+ * @todo separate the tokens
+ */
 export default css`
   :host {
     --radius: 0.5rem;

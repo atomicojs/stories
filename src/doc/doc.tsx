@@ -233,6 +233,7 @@ doc.styles = [
       bottom: 10px;
       right: 10px;
       --bg-color: black;
+      visibility: hidden;
     }
 
     :host([transitions]) {
@@ -275,6 +276,9 @@ doc.styles = [
         opacity: 1;
         transform: scale(1);
         transition: right 0s 0s, opacity 0.5s ease, transform 0.5s ease;
+      }
+      .toggle-menu {
+        visibility: visible;
       }
     }
   `,
