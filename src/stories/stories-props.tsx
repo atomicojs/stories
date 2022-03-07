@@ -53,16 +53,7 @@ function storiesProps({
                 <td>{name}</td>
                 <td>
                   <span class="stories-props-tag">
-                    {field.type == "radio-groups" ? (
-                      (Array.isArray(field.options)
-                        ? field.options
-                        : Object.values(field.options)
-                      ).map((value, i) =>
-                        i ? [" | ", <b>"{value}"</b>] : <b>"{value}"</b>
-                      )
-                    ) : (
-                      <b>{!!types && types[field.type]}</b>
-                    )}
+                    <b>{!!types && types[field.type]}</b>
                   </span>
                 </td>
                 <td>{field.description}</td>
