@@ -46,12 +46,13 @@ export default css`
      font-size-small: 0.875rem;
 
      bg-color: #f6f9f9;
+     bg-color-embed: #fff;
      bg-color-story: #fff;
      bg-color-code: #0a0024;
      bg-color-action: #dde0e0;
 
      color: currentColor;
-     color-story: currentColor;
+     color-embed: currentColor;
      color-code: white;
      color-action: currentColor;
      color-tab: black;
@@ -76,6 +77,8 @@ export default css`
      divide-size: 1px;
      divide: var(--divide-size) solid var(--color-divide);
      tab-style: 2px solid;
+
+     border-tabs: none;
 
      padding-x: 1rem;
 

@@ -22,7 +22,7 @@ function story({
 }: Props<typeof story.props>) {
   const host = useHost();
   const ref = useRef();
-  const [showCode, setShowCode] = useProp<boolean>("showCode");
+  const [showCode] = useProp<boolean>("showCode");
   const children = useSlot(ref).filter((child) => child instanceof Element);
 
   useMemo(() => {
@@ -89,6 +89,7 @@ story.styles = [
       box-sizing: border-box;
       place-content: var(--content);
       border-radius: 0 0 var(--radius) var(--radius);
+      background: var(--bg-color-story);
     }
 
     .hidden {

@@ -60,8 +60,9 @@ tabs.styles = [
     :host {
       display: block;
       border-radius: var(--radius);
-      background: var(--bg-color-story);
+      background: var(--bg-color-embed);
       box-shadow: var(--shadow-embed);
+      border: var(--border-tabs);
     }
     .tabs {
       width: 100%;
