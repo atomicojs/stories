@@ -88,6 +88,7 @@ story.styles = [
       padding: var(--padding-x);
       box-sizing: border-box;
       place-content: var(--content);
+      border-radius: 0 0 var(--radius) var(--radius);
     }
 
     .hidden {
