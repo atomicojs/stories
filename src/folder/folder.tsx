@@ -1,5 +1,5 @@
 import { Props, c, css } from "atomico";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import { IconFolder, IconSlash } from "./icons";
 import { useRouteMatch } from "@atomico/hooks/use-router";
 import tokens from "../tokens";

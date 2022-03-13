@@ -2,7 +2,7 @@ import { Props, c, css } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
 import { style } from "./toggle";
 import { useCssLightDom } from "@atomico/hooks/use-css-light-dom";
-import customElements from "../custom-elements";
+import customElements from "../system";
 
 const styleRadio = [
   style,

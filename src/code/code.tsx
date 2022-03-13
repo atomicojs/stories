@@ -1,6 +1,6 @@
 import { Props, c, css } from "atomico";
 import { usePromise } from "@atomico/hooks/use-promise";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import tokens from "../tokens";
 import { themeA11yDark } from "./theme";
 import { Scroll } from "../scroll/scroll";

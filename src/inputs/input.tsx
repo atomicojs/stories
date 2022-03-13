@@ -1,7 +1,7 @@
 import { Props, DOMEvent, Meta, c, css } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
 import { tokensInput } from "../tokens";
-import customElements from "../custom-elements";
+import customElements from "../system";
 
 function input(props: Props<typeof input>): Meta<DOMEvent<"change">> {
   useRender(() => <input {...props} />);

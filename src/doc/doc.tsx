@@ -1,7 +1,7 @@
 import { Props, c, css, useProp, useEffect, useHost, useMemo } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
 import { useRouter, useRedirect } from "@atomico/hooks/use-router";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import { Scroll } from "../scroll/scroll";
 import { Folder, Directory } from "../folder/folder";
 import { Button } from "../button/button";

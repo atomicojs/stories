@@ -1,6 +1,6 @@
 import { Props, c, css, useProp, Meta, DOMEvent } from "atomico";
 import { formToObject } from "@uppercod/form-tools";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import { Toggle, Radio, Input } from "../inputs/inputs";
 
 interface FieldBase {

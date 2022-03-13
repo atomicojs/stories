@@ -1,7 +1,7 @@
 import { useSlot } from "@atomico/hooks/use-slot";
 import { c, css, useRef } from "atomico";
 import { serialize } from "atomico/utils";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import tokens from "../tokens";
 
 function button() {

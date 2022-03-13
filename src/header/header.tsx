@@ -1,6 +1,6 @@
 import { c, css, useProp, Meta, DOMEvent } from "atomico";
 
-import customElements from "../custom-elements";
+import customElements from "../system";
 import tokens from "../tokens";
 
 function header(): Meta<DOMEvent<"Toggle">> {

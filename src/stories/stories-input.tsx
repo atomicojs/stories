@@ -1,6 +1,6 @@
 import { Props, c, css, useProp } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
-import customElements from "../custom-elements";
+import customElements from "../system";
 
 function input({ type, name, options }: Props<typeof input.props>) {
   const [checked, setChecked] = useProp("checked");

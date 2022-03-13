@@ -1,6 +1,6 @@
 import { c, css, useRef, useProp, Meta, DOMEvent } from "atomico";
 import { useProxySlot } from "@atomico/hooks/use-slot";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import tokens from "../tokens";
 import { serialize } from "atomico/utils";
 

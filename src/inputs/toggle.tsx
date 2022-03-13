@@ -1,5 +1,5 @@
 import { Props, c, css, useProp, useRef } from "atomico";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import { useRender } from "@atomico/hooks/use-render";
 import { useCssLightDom } from "@atomico/hooks/use-css-light-dom";
 import { tokensInput } from "../tokens";

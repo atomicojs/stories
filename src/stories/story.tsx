@@ -10,7 +10,7 @@ import {
   useHost,
 } from "atomico";
 import { useSlot } from "@atomico/hooks/use-slot";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import tokens from "../tokens";
 import { Code } from "../code/code";
 import { serialize } from "atomico/utils";

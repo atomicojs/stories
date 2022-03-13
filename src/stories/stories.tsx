@@ -1,7 +1,7 @@
 import { Props, c, css, useRef, useProp } from "atomico";
 import { useProxySlot } from "@atomico/hooks/use-slot";
 import { Tabs } from "../tabs/tabs";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import { Story } from "./story";
 import { StoriesProps, Fields } from "./stories-props";
 import { Toggle } from "../inputs/inputs";

@@ -1,7 +1,7 @@
 import { Props, c, css } from "atomico";
 import { useRender } from "@atomico/hooks/use-render";
 import { useCssLightDom } from "@atomico/hooks/use-css-light-dom";
-import customElements from "../custom-elements";
+import customElements from "../system";
 import tokens, { tokensArticle } from "../tokens";
 
 function article({ title }: Props<typeof article.props>) {
