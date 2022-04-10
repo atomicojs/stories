@@ -1,12 +1,7 @@
 import { template } from "atomico";
 
 export const IconSlash = template(
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="10"
-    height="10"
-    viewBox="0 0 10 10"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 10 10">
     <g transform="translate(224 -17)" opacity="0.5">
       <path
         d="M -216.9999084472656 26.5 C -217.0003509521484 26.5 -217.0005493164062 26.49996948242188 -217.0005493164062 26.49996948242188 L -217.0004119873047 25.37987518310547 L -217.0004119873047 26.49959945678711 L -216.9999084472656 26.5 Z"
@@ -31,12 +26,7 @@ export const IconSlash = template(
 ) as any;
 
 export const IconFolder = template(
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="11"
-    height="10"
-    viewBox="0 0 11 10"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 11 10">
     <path
       id="folder"
       d="M12,11a1,1,0,0,1-1,1H3a1,1,0,0,1-1-1V4A1,1,0,0,1,3,3H5.5l1,1.5H11a1,1,0,0,1,1,1Z"

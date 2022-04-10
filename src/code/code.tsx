@@ -99,7 +99,7 @@ code.styles = [
     code,
     pre {
       font-size: unset;
-      font-family: unset;
+      font-weight: 500;
     }
     code {
       white-space: unset;

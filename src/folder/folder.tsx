@@ -24,7 +24,7 @@ function folder({ directory, slug, indent = 0 }: Props<typeof folder>) {
     <host shadowDom active={path && match(path) ? true : false}>
       {title && (
         <a class="folder-row" href={path}>
-          <div>
+          <div class="folder-icon">
             {icon ? (
               icon
             ) : entries.length && !path ? (
@@ -98,6 +98,11 @@ folder.styles = [
     }
     .folder-sub {
       padding-left: calc(1em * var(--folder-indent));
+    }
+    .folder-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   `,
 ];
