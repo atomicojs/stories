@@ -19,20 +19,19 @@
     "create-component": "scaff template/component-jsx src"
   },
   "dependencies": {
-    "@atomico/hooks": "^3.32.0",
-    "@uppercod/markdown-inline": "^0.9.0",
-    "@uppercod/parse": "^0.4.2",
-    "atomico": "^1.47.0",
-    "atomico-use-head": "^1.1.0",
+    "@atomico/hooks": "^3.49.1",
+    "@atomico/postcss-tokens": "^2.1.0",
+    "@atomico/tsconfig": "^1.1.2",
+    "atomico": "^1.74.3",
+    "highlight.js": "^11.9.0",
     "scrollable-component": "^1.2.0"
   },
   "devDependencies": {
-    "@atomico/exports": "^0.22.2",
     "@atomico/scaffold": "^0.2.0",
-    "@uppercod/vite-meta-url": "latest",
-    "@uppercod/vite-meta-url-load-css": "latest",
+    "@atomico/vite": "^2.13.0",
+    "postcss-import": "^15.1.0",
     "typescript": "^4.6.2",
-    "vite": "latest"
+    "vite": "^4.4.11"
   },
   "author": "UpperCod",
   "license": "MIT",
@@ -40,5 +39,14 @@
     "type": "git",
     "url": "git+ssh://git@github.com/atomicojs/stories.git"
   },
-  "homepage": "https://github.com/atomicojs/stories"
+  "homepage": "https://github.com/atomicojs/stories",
+  "postcss": {
+    "plugins": {
+      "postcss-import": {},
+      "@atomico/postcss-tokens": {
+        "defaultValue": true,
+        "prefix": "stories"
+      }
+    }
+  }
 }
