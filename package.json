@@ -10,9 +10,9 @@
     "start": "vite --force",
     "build": "vite build",
     "build:types": "tsc",
-    "build:compile": "library src/**/*",
-    "build:exports": "exports lib/**/* types/**/*",
-    "prepublishOnly": "npm run exports"
+    "build:compile": "library \"src/**/*\"",
+    "build:exports": "exports \"lib/**/*\" \"types/**/*\"",
+    "prepublishOnly": "run build:* -s"
   },
   "dependencies": {
     "@atomico/hooks": "^3.49.1",
