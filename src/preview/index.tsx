@@ -73,11 +73,15 @@ preview.props = {
   load: Function,
   sandbox: { type: Boolean, reflect: true },
   focus: { type: Boolean, reflect: true },
+  role: { type: String, value: "preview", reflect: true },
 };
 
 preview.styles = [
   tokensCard,
   css`
+    :host {
+      --background: var(--stories--color-primary);
+    }
     :host {
       display: flex;
       resize: horizontal;
@@ -86,8 +90,8 @@ preview.styles = [
       min-width: 280px;
       box-sizing: border-box;
       padding: var(---padding);
-      border: var(--border);
       border-radius: var(--radius);
+      background: var(--background);
     }
     :host([focus]) {
       align-items: center;

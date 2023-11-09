@@ -49,6 +49,7 @@ code.props = {
   type: String,
   value: String,
   theme: { type: String, value: () => "atom-one-dark.min" },
+  role: { type: String, value: "code", reflect: true },
 };
 
 code.styles = [

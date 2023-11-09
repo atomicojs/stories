@@ -23,10 +23,17 @@
         margin: 0px;
         overflow: hidden auto;
       }
+      body[theme="dark"] {
+        background: #03000c;
+        color: #f1f1f9;
+      }
     </style>
-    <script async type="module" src="./src/markdown.tsx"></script>
   </head>
   <body>
-    <my-markdown></my-markdown>
+    <script type="module">
+      import { render } from "atomico";
+      import view from "./src/index.tsx";
+      render(view, document.body);
+    </script>
   </body>
 </html>

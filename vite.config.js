@@ -11,10 +11,10 @@ export default defineConfig({
   },
   plugins: atomico({
     markdown: {
-      inject: `
-      import "/src/preview";
-      import "/src/code";
-      import "/src/code-editor";
+      imports: `
+      import { Preview } from  "/src/preview";
+      import { Code } from "/src/code";
+      import { Editor } from "/src/editor";
       `,
       render: {
         preview(token) {
@@ -22,22 +22,18 @@ export default defineConfig({
             return createHtml(token.preview);
           }
 
-          return createHtml(`<stories-code-editor text="${encodeURI(
-            token.text
-          )}">
-            <stories-preview label="Preview" ${token.options.join(" ")} load=${
+          return createHtml(`<Editor text="${encodeURI(token.text)}">
+            <Preview label="Preview" ${token.options.join(" ")} load=${
             token.preview
           }/>
-            <stories-code label="Code" type="${token.lang}" value="${encodeURI(
+            <Code label="Code" type="${token.lang}" value="${encodeURI(
             token.text
           )}"/>
-          </stories-code-editor>`);
+          </Editor>`);
         },
         code(token) {
           return createHtml(
-            `<stories-code type="${token.lang}" value="${encodeURI(
-              token.text
-            )}"/>`
+            `<Code type="${token.lang}" value="${encodeURI(token.text)}"/>`
           );
         },
       },

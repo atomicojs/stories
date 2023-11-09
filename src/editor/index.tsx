@@ -1,10 +1,10 @@
 import { useProxySlot } from "@atomico/hooks/use-slot";
 import { Props, c, css, useProp, useRef } from "atomico";
 import { Button, ButtonGroup } from "../button";
-import { tokensCard } from "../tokens";
+import { tokensCard, tokensColor, tokensEditor } from "../tokens";
 import { copy } from "@atomico/hooks/use-copy";
 
-function codeEditor({ text }: Props<typeof codeEditor>) {
+function editor({ text }: Props<typeof editor>) {
   const [tab, setTab] = useProp<string>("tab");
   const ref = useRef();
   const slots = useProxySlot<HTMLElement>(
@@ -15,7 +15,7 @@ function codeEditor({ text }: Props<typeof codeEditor>) {
     <host shadowDom>
       <slot ref={ref} />
       <div class="header">
-        <ButtonGroup appearance="tab">
+        <ButtonGroup>
           {slots.map((element, i) => {
             const label = element.getAttribute("label");
             const value = element.getAttribute("value") || label;
@@ -39,6 +39,7 @@ function codeEditor({ text }: Props<typeof codeEditor>) {
             small
             staticNode
             onclick={() => copy(decodeURI(text))}
+            class="buttons"
           >
             <svg
               width="11"
@@ -49,7 +50,7 @@ function codeEditor({ text }: Props<typeof codeEditor>) {
             >
               <path
                 d="M0 3C0 2.44772 0.447715 2 1 2H8C8.55229 2 9 2.44772 9 3V10C9 10.5523 8.55229 11 8 11H1C0.447715 11 0 10.5523 0 10V3Z"
-                fill="#151718"
+                fill="currentColor"
               />
               <rect
                 opacity="0.5"
@@ -57,7 +58,7 @@ function codeEditor({ text }: Props<typeof codeEditor>) {
                 width="9"
                 height="9"
                 rx="1"
-                fill="#151718"
+                fill="currentColor"
               />
             </svg>
           </Button>
@@ -79,24 +80,37 @@ function codeEditor({ text }: Props<typeof codeEditor>) {
   );
 }
 
-codeEditor.props = {
+editor.props = {
   tab: String,
   text: String,
+  role: { type: String, value: "editor", reflect: true },
 };
 
-codeEditor.styles = [
+editor.styles = [
+  tokensColor,
   tokensCard,
+  tokensEditor,
   css`
     :host {
       display: block;
       max-width: 100%;
+      border-radius: var(--radius);
+      border: var(--border);
+      box-sizing: border-box;
+      background: var(--color-background);
     }
     .header {
       display: grid;
       grid-template-columns: auto auto;
       justify-content: space-between;
-      padding: 0 var(--padding);
-      min-height: 2.25rem;
+      align-items: center;
+      padding: var(--padding);
+      box-sizing: border-box;
+      border-bottom: var(--border);
+    }
+    .view {
+      border-radius: 0 0 var(--radius) var(--radius);
+      background: var(--background);
     }
     .hide {
       display: none;
@@ -104,4 +118,4 @@ codeEditor.styles = [
   `,
 ];
 
-export const CodeEditor = c(codeEditor);
+export const Editor = c(editor);

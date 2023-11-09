@@ -2,18 +2,17 @@ import { useSlot } from "@atomico/hooks/use-slot";
 import { Props, c, css, useEffect, useRef } from "atomico";
 import { tokensButton } from "../tokens";
 
-function buttonGroup({ appearance }: Props<typeof buttonGroup>) {
+function buttonGroup() {
   const ref = useRef();
+
   const elements = useSlot<HTMLElement>(
     ref,
     (element) => element instanceof HTMLElement
   );
+
   useEffect(() => {
-    if (!appearance) return;
-    elements.forEach((elements) =>
-      elements.setAttribute("appearance", appearance)
-    );
-  }, [appearance, ...elements]);
+    elements.forEach((elements) => elements.setAttribute("appearance", "tab"));
+  }, elements);
 
   return (
     <host shadowDom>
@@ -21,10 +20,6 @@ function buttonGroup({ appearance }: Props<typeof buttonGroup>) {
     </host>
   );
 }
-
-buttonGroup.props = {
-  appearance: { type: String, reflect: true },
-};
 
 buttonGroup.styles = [
   tokensButton,

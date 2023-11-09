@@ -1,5 +1,5 @@
 import { c, css } from "atomico";
-import tokens from "../tokens";
+import { tokensScroll } from "../tokens";
 import { ScrollableComponentElement } from "scrollable-component";
 
 function scroll() {
@@ -7,11 +7,11 @@ function scroll() {
 }
 
 scroll.styles = [
-  tokens,
+  tokensScroll,
   css`
     :host {
       width: 100%;
-      --scrollbar-width: var(--scroll-width);
+      --scrollbar-width: var(--width);
     }
   `,
 ];
