@@ -1,6 +1,6 @@
 import { Props, c, useAsync, useEffect, useRef, css } from "atomico";
 import hljs from "highlight.js";
-import { Scroll } from "../scroll/scroll";
+import { Scroll } from "../scroll";
 import { tokensCard, tokensCode } from "../tokens";
 
 export const options = {

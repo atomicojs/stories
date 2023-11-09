@@ -1,13 +1,8 @@
-import { Markdown } from "./markdown.js";
-import * as readme from "./README.md";
-
-const modules = import.meta.glob("./**/*.md", {
-  query: { meta: true },
-  eager: true,
-});
-
-export default (
-  <host>
-    <Markdown style="max-width: 980px" module={readme}></Markdown>
-  </host>
-);
+export { Author } from "./author";
+export { Button, ButtonGroup } from "./button";
+export { Editor } from "./editor";
+export { Code } from "./code";
+export { Preview } from "./preview";
+export { Scroll } from "./scroll";
+export { Hero } from "./hero";
+export { Markdown } from "./markdown";
