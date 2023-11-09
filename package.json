@@ -11,7 +11,7 @@
     "build": "vite build",
     "build:types": "tsc",
     "build:compile": "library src/**/*",
-    "build:exports": "exports lib/**/* types/**/* --wrappers",
+    "build:exports": "exports lib/**/* types/**/*",
     "prepublishOnly": "npm run exports"
   },
   "dependencies": {
