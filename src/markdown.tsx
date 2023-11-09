@@ -65,7 +65,7 @@ function markdown({
   useCssLightDom(cssLightDom);
   return (
     <host>
-      {meta.title && (
+      {meta && (
         <Hero>
           {meta.version && <Button small>{meta.version}</Button>}
           <h1>{meta.title}</h1>
