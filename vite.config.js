@@ -5,6 +5,13 @@ import { createHtml } from "@atomico/vite/plugins/markdown";
 export default defineConfig({
   build: {
     target: "esnext",
+    modulePreload: {
+      polyfill: false,
+      resolveDependencies(filename, deps, context) {
+        console.log({ filename, context, deps });
+        return [];
+      },
+    },
   },
   optimizeDeps: {
     exclude: "atomico",

@@ -21,12 +21,12 @@
     "scrollable-component": "^1.2.0"
   },
   "devDependencies": {
-    "@atomico/run": "^0.13.0",
     "@atomico/exports": "^1.12.0",
     "@atomico/postcss-tokens": "^3.2.0",
+    "@atomico/run": "^0.13.0",
     "@atomico/scaffold": "^0.2.0",
     "@atomico/tsconfig": "^1.1.2",
-    "@atomico/vite": "^2.15.3",
+    "@atomico/vite": "^2.15.4",
     "postcss-import": "^15.1.0",
     "typescript": "^4.6.2",
     "vite": "^4.5.0"
@@ -45,6 +45,100 @@
         "defaultValue": true,
         "prefix": "stories"
       }
+    }
+  },
+  "types": "types/index.d.ts",
+  "exports": {
+    "./author": {
+      "default": "./lib/author.js",
+      "types": "./types/author/index.d.ts"
+    },
+    "./button": {
+      "default": "./lib/button.js",
+      "types": "./types/button/index.d.ts"
+    },
+    "./code": {
+      "default": "./lib/code.js",
+      "types": "./types/code/index.d.ts"
+    },
+    "./editor": {
+      "default": "./lib/editor.js",
+      "types": "./types/editor/index.d.ts"
+    },
+    "./example": {
+      "default": "./lib/example.js",
+      "types": "./types/example.d.ts"
+    },
+    "./hero": {
+      "default": "./lib/hero.js",
+      "types": "./types/hero/index.d.ts"
+    },
+    ".": {
+      "default": "./lib/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./markdown": {
+      "default": "./lib/markdown.js",
+      "types": "./types/markdown.d.ts"
+    },
+    "./preview": {
+      "default": "./lib/preview.js",
+      "types": "./types/preview/index.d.ts"
+    },
+    "./scroll": {
+      "default": "./lib/scroll.js",
+      "types": "./types/scroll/index.d.ts"
+    },
+    "./tokens": {
+      "default": "./lib/tokens.js",
+      "types": "./types/tokens.d.ts"
+    },
+    "./types": {
+      "default": "./lib/types.js"
+    },
+    "./button/group": {
+      "default": "./lib/button/group.js",
+      "types": "./types/button/group.d.ts"
+    },
+    "./chunks/6eeea84dc71840083efa648363516461": {
+      "default": "./lib/chunks/6eeea84dc71840083efa648363516461.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "example": [
+        "types/example.d.ts"
+      ],
+      "markdown": [
+        "types/markdown.d.ts"
+      ],
+      "tokens": [
+        "types/tokens.d.ts"
+      ],
+      "code": [
+        "types/code/index.d.ts"
+      ],
+      "button/group": [
+        "types/button/group.d.ts"
+      ],
+      "button": [
+        "types/button/index.d.ts"
+      ],
+      "editor": [
+        "types/editor/index.d.ts"
+      ],
+      "author": [
+        "types/author/index.d.ts"
+      ],
+      "hero": [
+        "types/hero/index.d.ts"
+      ],
+      "scroll": [
+        "types/scroll/index.d.ts"
+      ],
+      "preview": [
+        "types/preview/index.d.ts"
+      ]
     }
   }
 }
