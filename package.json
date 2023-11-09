@@ -1,10 +1,6 @@
 {
   "name": "@atomico/stories",
   "description": "a repo to start with atomico",
-  "workspaces": [
-    "src/**/*",
-    "site"
-  ],
   "version": "1.9.0",
   "type": "module",
   "publishConfig": {
@@ -25,6 +21,7 @@
     "scrollable-component": "^1.2.0"
   },
   "devDependencies": {
+    "@atomico/run": "^0.13.0",
     "@atomico/exports": "^1.12.0",
     "@atomico/postcss-tokens": "^3.2.0",
     "@atomico/scaffold": "^0.2.0",
