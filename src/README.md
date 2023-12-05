@@ -1,6 +1,6 @@
 ```tsx meta
 export const meta = {
-  title: "Stories",
+  title: `Stories with @atomico/stories`,
   description: (
     <>
       Markdown with <b>superpowers</b>

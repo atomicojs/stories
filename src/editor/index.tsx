@@ -97,7 +97,7 @@ editor.styles = [
       border-radius: var(--radius);
       border: var(--border);
       box-sizing: border-box;
-      background: var(--color-background);
+      background: var(--color-container-layer);
     }
     .header {
       display: grid;
@@ -110,7 +110,6 @@ editor.styles = [
     }
     .view {
       border-radius: 0 0 var(--radius) var(--radius);
-      background: var(--background);
     }
     .hide {
       display: none;

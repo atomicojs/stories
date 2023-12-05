@@ -1,31 +1,43 @@
 color:
-  primary: "#000"
-  secondary: "#A1A1A9"
-  contrast: "#fff"
-  neutral: "#D0D9D8"
-  container: "#fff"
-  frame: "#E1E1E9"
+  primary:
+    =: "transparent"
+    active: "#D0D9D8"
+    contrast: unset
+    frame: $color-frame
+  frame: rgba(0,0,0,.1)
+  container:
+    =: "#f1f1f1"
+    layer: "#fff"
+    contrast: "#232323"
+  action: "#9BA3AF"
+  context(theme=dark):
+    container:
+      =: "#101010"
+      layer: rgb(10 10 20)
+    primary:
+      active: rgba(255,255,255,.2)
+      frame: rgba(255,255,255,.1)
 
 card:
   radius: 1rem
   padding: 0.625rem
-  border: 1px solid $$card-color-border
+  border: 1px solid $$color-primary-frame
   gap:
     =: 1rem
   color:
-    contrast: rgba(0,0,0,.025)
-    border: rgba(0,0,0,.1)
+    border: $$color-primary-frame
 
 code:
   font:
     size: 1rem
     height: 1.2
+  border: none
+  (unstyle!=true):
+    border: 1px solid $$color-primary-frame
 
 editor:
-  color:
-    background: $color-container
   border:
-    =: $$editor-border-size solid $$color-frame
+    =: $editor-border-size solid $color-primary-frame
     size: 1px
   slot(role=preview):
     background: transparent
@@ -35,28 +47,19 @@ editor:
     radius: 0 0 $card-radius $card-radius
     border: none
 
-hero:
-  color:
-    dot: rgba(0,0,0,.25)
-    gradient: transparent
-    slot(*):
-      radius: 0px
-
 button:
   radius: 1.25rem
   size: 2rem
   padding: 0 1.25rem
   font:
     size: 0.875rem
-  group:
-    color: rgba(0,0,0,.05)
-    border: none
   color:
-    container: rgba(0,0,0,.1)
-    text: black
+    container: $$color-primary
+    text: $color-primary-contrast
     (checked):
-      container: black
-      text: white
+      container: $$color-primary-active
+    (action):
+      container: $$color-primary-active
   (small):
     radius: 0.875rem
     size: 28px
@@ -65,13 +68,28 @@ button:
       size: 0.75rem
   (icon):
     padding: 0
-  (appearance=tab):
     color:
-      container: transparent
-      text: black
-      (checked):
-        container: black
-        text: white
+      text: $color-action
+
+buttons:
+  border:
+    =: $buttons-border-size solid $color-primary-frame
+    size: 1px
+
+    color:
+      container: red
 
 scroll:
   width: .5rem
+
+layout:
+  title:
+    1: 44px
+    2: 32px
+    3: 24px
+    4: 18px
+    5: 16px
+  max:
+    width: 720px
+  space:
+    y: 80px

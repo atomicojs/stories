@@ -29,11 +29,16 @@ export default defineConfig({
             return createHtml(token.preview);
           }
 
-          return createHtml(`<Editor text="${encodeURI(token.text)}">
-            <Preview label="Preview" ${token.options.join(" ")} load=${
-            token.preview
-          }/>
-            <Code label="Code" type="${token.lang}" value="${encodeURI(
+          const attrs = token.options.map((value) => {
+            const [attr, val] = value.split("=");
+            return val ? `${attr}="${val}"` : value;
+          });
+
+          return createHtml(`<Editor text="${encodeURI(
+            token.text
+          )}" ${attrs.join(" ")}>
+            <Preview label="Preview" ${attrs.join(" ")} load=${token.preview}/>
+            <Code unstyle label="Code" type="${token.lang}" value="${encodeURI(
             token.text
           )}"/>
           </Editor>`);

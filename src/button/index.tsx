@@ -1,12 +1,20 @@
-import { c, css, useRef } from "atomico";
+import { Props, c, css, useProp } from "atomico";
 export { ButtonGroup } from "./group";
 import { tokensButton } from "../tokens";
 
 function button() {
-  const refSlot = useRef();
+  const [, setAction] = useProp("action");
   return (
     <host shadowDom>
-      <button class="button">
+      <button
+        class="button"
+        onclick={() => {
+          setAction((state) => {
+            if (!state) setTimeout(setAction, 500, false);
+            return true;
+          });
+        }}
+      >
         <slot />
       </button>
     </host>
@@ -20,6 +28,7 @@ button.props = {
   icon: { type: Boolean, reflect: true },
   appearance: { type: String, reflect: true },
   solid: { type: String, reflect: true },
+  action: { type: Boolean, reflect: true },
 };
 
 button.styles = [
@@ -48,7 +57,9 @@ button.styles = [
       justify-content: center;
       transition: 0.15s ease all;
       background: var(--color-container);
+      border: 1px solid transparent;
     }
+
     :host([checked]) .button {
       transition: 0.5s ease all;
       ---border-color: var(--color-text);

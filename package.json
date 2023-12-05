@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@atomico/hooks": "^3.49.1",
+    "@atomico/postcss-tokens": "^3.4.5",
     "atomico": "^1.74.3",
     "highlight.js": "^11.9.0",
     "scrollable-component": "^1.2.0"
   },
   "devDependencies": {
     "@atomico/exports": "^1.12.0",
-    "@atomico/postcss-tokens": "^3.2.0",
     "@atomico/run": "^0.13.0",
     "@atomico/scaffold": "^0.2.0",
     "@atomico/tsconfig": "^1.1.2",

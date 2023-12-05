@@ -1,13 +1,16 @@
 import { c, css } from "atomico";
-import { tokensHero } from "../tokens";
-
+import { Pattern } from "../pattern";
+import { tokensColor, tokensHero, tokensLayout } from "../tokens";
 function hero() {
   return (
     <host shadowDom>
-      <div class="pattern">
+      <Pattern absolute />
+      <div class="center">
         <div class="content">
           <slot />
         </div>
+      </div>
+      <div class="center">
         <footer class="footer">
           <slot name="footer" />
         </footer>
@@ -17,29 +20,29 @@ function hero() {
 }
 
 hero.styles = [
+  tokensColor,
+  tokensLayout,
   tokensHero,
   css`
     :host {
-      display: block;
-      background: radial-gradient(
-        farthest-side at 50% -100%,
-        var(--color-gradient),
-        transparent
-      );
-    }
-    .pattern {
+      background: var(--color-container);
       display: grid;
-      padding: 10% 0 5%;
-      background-size: 2rem 2rem;
-      background-image: radial-gradient(
-        circle,
-        var(--color-dot) 1px,
-        rgba(0, 0, 0, 0) 1px
-      );
-      gap: 1rem;
+      gap: calc(var(--space-y) / 2);
+      padding-top: var(--space-y);
+      position: relative;
+    }
+
+    .center {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0px auto;
+      position: relative;
+    }
+    ::slotted(*) {
+      grid-column: content;
     }
     ::slotted(h1) {
-      font-size: clamp(2rem, 10vw, 5rem);
+      font-size: clamp(2rem, 5vw, 5rem);
     }
     ::slotted(p) {
       font-size: clamp(1rem, 10vw, 1.5rem);
@@ -47,6 +50,16 @@ hero.styles = [
     ::slotted(*) {
       line-height: 1.2em;
       margin: 0;
+    }
+    .footer {
+      background: var(--color-container-layer);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 100px;
+      transform: translateY(50%);
+      border: 1px solid var(--color-primary-frame);
     }
   `,
 ];

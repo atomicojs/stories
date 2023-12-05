@@ -1,7 +1,7 @@
 import { Props, c, useAsync, useEffect, useRef, css } from "atomico";
 import hljs from "highlight.js";
 import { Scroll } from "../scroll";
-import { tokensCard, tokensCode } from "../tokens";
+import { tokensCard, tokensCode, tokensColor } from "../tokens";
 
 export const options = {
   cdnTheme: `https://unpkg.com/highlight.js@11.9.0/styles/$.css`,
@@ -26,7 +26,7 @@ function code({ type, value, theme }: Props<typeof code>) {
 
   return (
     <host shadowDom>
-      <Scroll>
+      <Scroll class="scroll hljs">
         <pre class="code" id="pre">
           <code
             id="code"
@@ -37,10 +37,6 @@ function code({ type, value, theme }: Props<typeof code>) {
         </pre>
       </Scroll>
       <style>{css}</style>
-      <style>{`
-        #code{padding:var(--padding); border-radius: var(--radius);}
-        #pre{margin: 0px}
-      `}</style>
     </host>
   );
 }
@@ -50,9 +46,11 @@ code.props = {
   value: String,
   theme: { type: String, value: () => "atom-one-dark.min" },
   role: { type: String, value: "code", reflect: true },
+  unstyle: { type: Boolean, reflect: true },
 };
 
 code.styles = [
+  tokensColor,
   tokensCard,
   tokensCode,
   css`
@@ -62,6 +60,21 @@ code.styles = [
       border-radius: var(--radius);
       font-size: var(--font-size);
       line-height: var(--font-height);
+    }
+    .scroll {
+      padding: var(--padding);
+      border-radius: var(--radius);
+      box-sizing: border-box;
+    }
+    code.hljs {
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+    #pre {
+      margin: 0px;
+    }
+    .hljs {
+      background: var(--color-container-contrast) !important;
     }
   `,
 ];

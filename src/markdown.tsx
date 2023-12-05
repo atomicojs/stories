@@ -4,11 +4,12 @@ import { useCssLightDom } from "@atomico/hooks/use-css-light-dom";
 import { Hero } from "./hero";
 import { Button } from "./button";
 import { Author } from "./author";
+import { tokensLayout } from "./tokens";
 
 const cssLightDom = css`
   :host {
-    display: block;
-    margin: auto;
+    display: grid;
+    gap: var(--space-y);
   }
   blockquote {
     margin: 0;
@@ -52,6 +53,25 @@ const cssLightDom = css`
     border: none;
     border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
   }
+  .content {
+    max-width: var(--max-width);
+    margin: auto;
+  }
+  h1 {
+    font-size: var(--title-1);
+  }
+  h2 {
+    font-size: var(--title-2);
+  }
+  h3 {
+    font-size: var(--title-3);
+  }
+  h4 {
+    font-size: var(--title-4);
+  }
+  h5 {
+    font-size: var(--title-5);
+  }
 `;
 
 interface Module {
@@ -62,18 +82,19 @@ interface Module {
 function markdown({
   module: { default: content, meta },
 }: Props<typeof markdown>) {
+  useCssLightDom(tokensLayout);
   useCssLightDom(cssLightDom);
   return (
     <host>
       {meta && (
-        <Hero>
+        <Hero width="full">
           {meta.version && <Button small>{meta.version}</Button>}
           <h1>{meta.title}</h1>
           {meta.description && <p>{meta.description}</p>}
           {meta.author && <Author slot="footer" user={meta.author} />}
         </Hero>
       )}
-      <main>{content}</main>
+      <div class="content">{content}</div>
     </host>
   );
 }
